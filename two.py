@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 from time import sleep
-from secrets import pw
 import random
 
 from selenium.webdriver.chrome.options import Options
