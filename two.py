@@ -22,15 +22,11 @@ class LinkedinBot:
         sleep(2)
 
     def go_jobs(self):
-        self.driver.find_element_by_xpath("//a[contains(@href,'/feed')]")\
-            .click()
         sleep(2)
-        self.driver.find_element_by_xpath("//a[contains(@href,'/jobs')]")\
-            .click()
+        self.driver.get("https://linkedin.com/jobs")
         sleep(2)
 
     def apply_job(self):
-        sleep(4)
         # Section to click the Easy Apply Button on job page
         gerat = True
         while gerat:
@@ -55,7 +51,6 @@ class LinkedinBot:
 
     def click_job_card(self):
         # jobs = self.driver.find_elements_by_xpath('//*[text()="Easy Apply")]')
-        sleep(5)
         easyJobs = []
         while len(easyJobs) == 0:
             try:
@@ -98,6 +93,7 @@ seri = 20  # number large enough to start the loop :-)
 
 while seri:
     Lbot.go_jobs()
+    sleep(10)
     Lbot.click_job_card()
     Lbot.apply_job()
     seri -= 1
