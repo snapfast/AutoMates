@@ -2,5 +2,6 @@ __pycache__/
 .vscode/
 venv/
 chrome-data/
+chromedriver/
 secrets.py
 

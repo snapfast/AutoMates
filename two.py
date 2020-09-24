@@ -1,14 +1,31 @@
 # this file uses local storage folder for browser data
 # login to the account before executing the actual script
 
+import subprocess
+import sys
+
+package = 'selenium'
+def installP(package):
+    try:
+        import selenium
+        return 0
+    except ModuleNotFoundError as notfound:
+        print("Module not present {}".format(notfound))
+    print("installing {} now...".format(package))
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+installP(package)
+
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
 from time import sleep
 import random
 
-from selenium.webdriver.chrome.options import Options
+import extractfiles
 
 
 class LinkedinBot:
@@ -18,7 +35,7 @@ class LinkedinBot:
         chrome_options.add_experimental_option("useAutomationExtension", False)
         # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
-        self.driver = webdriver.Chrome('D:\libtools\chromedriver\chromedriver.exe', options=chrome_options)
+        self.driver = webdriver.Chrome('chromedriver\chromedriver.exe', options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")
         sleep(2)
 
@@ -45,10 +62,15 @@ class LinkedinBot:
         sleep(2)
 
         gerat = True
+        cc = 5
         while gerat:
             try:
                 self.driver.find_element_by_xpath("//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
                 print('Next / Submit')
+                if cc == 0:
+                    input("please enter appropriate data on web page, then press any key here...")
+                    cc = 5
+                cc -= 1
                 sleep(2)
             except NoSuchElementException:
                 gerat = False

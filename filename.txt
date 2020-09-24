@@ -174,3 +174,29 @@ Job Title
 Solution Architect -- LTI - Larsen & Toubro Infotech -- Mumbai, Maharashtra, India
 Job Title
 Deployment Engineer -- ManpowerGroup India -- Bengaluru, Karnataka, India
+Job Title
+Software Engineer -- LinkedIn -- Bangalore
+Job Title
+Elixir Software Developer -- Mana Search -- London, England Metropolitan Area
+Job Title
+DevSecOps/Security Architect -- Wipro Limited -- Bengaluru, Karnataka, India
+Job Title
+Software Developer -- Mana Search -- London, England Metropolitan Area
+Job Title
+DevOps Engineer -- Amido -- London, England, United Kingdom
+Job Title
+Cloud Engineer (Azure, DevOps) -- Understanding Recruitment -- London, England, United Kingdom
+Job Title
+DevOps Engineer -- CloudStream Global -- London, England, United Kingdom
+Job Title
+Azure Architect/Lead: -- NTT DATA Services -- Pune, Maharashtra, India
+Job Title
+Full Stack Developer - Quant Investment Management Firm -- Hunter Bond -- London, England, United Kingdom
+Job Title
+DevOps Architect - Azure + Infra -- LTI - Larsen & Toubro Infotech -- Mumbai, Maharashtra, India
+Job Title
+GCP Lead Architect -- Computacenter -- London, United Kingdom
+Job Title
+Azure Data Engineer -- Fractal -- Bangalore, IN
+Job Title
+Cloud Engineer - Infrastructure -- Fractal -- Mumbai, IN
