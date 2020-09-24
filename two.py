@@ -4,6 +4,7 @@
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
+from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 
@@ -15,16 +16,14 @@ class LinkedinBot:
         chrome_options = Options()
         chrome_options.add_argument("--user-data-dir=chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
-        chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
+        # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
         self.driver = webdriver.Chrome('D:\libtools\chromedriver\chromedriver.exe', options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")
         sleep(2)
 
-    def go_jobs(self):
-        sleep(2)
-        self.driver.get("https://linkedin.com/jobs")
-        sleep(2)
+    def go_exit(self):
+        self.driver.quit()
 
     def apply_job(self):
         # Section to click the Easy Apply Button on job page
@@ -52,6 +51,10 @@ class LinkedinBot:
     def click_job_card(self):
         # jobs = self.driver.find_elements_by_xpath('//*[text()="Easy Apply")]')
         easyJobs = []
+        sleep(2)
+        html = self.driver.find_element_by_tag_name('html')
+        html.send_keys(Keys.END)
+        sleep(2)
         while len(easyJobs) == 0:
             try:
                 easyJobs = self.driver.find_elements_by_xpath("//*[text()='Easy Apply']/ancestor::*[@class='ember-view job-card-square__link display-flex flex-grow-1 flex-column align-items-stretch full-width js-focusable-card']")
@@ -65,6 +68,12 @@ class LinkedinBot:
         yehut = True
         while yehut:
             try:
+                jname = easyJobs[0].find_element_by_class_name('job-card-square__title').text
+                cname = easyJobs[0].find_element_by_class_name('job-card-container__company-name').text
+                lname = easyJobs[0].find_element_by_css_selector("li[data-test-job-card-square__location]").text
+                
+                with open('filename.txt', 'a') as f:
+                    print(jname, "--", cname, "--", lname, file=f)
                 easyJobs[cl].click()
                 yehut = False
             except ElementNotInteractableException:
@@ -97,3 +106,5 @@ while seri:
     Lbot.click_job_card()
     Lbot.apply_job()
     seri -= 1
+
+Lbot.go_exit()
