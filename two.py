@@ -23,7 +23,13 @@ class LinkedinBot:
         sleep(2)
 
     def go_exit(self):
+        self.driver.close()
         self.driver.quit()
+
+    def go_jobs(self):
+        sleep(2)
+        self.driver.get("https://linkedin.com/jobs")
+        sleep(2)
 
     def apply_job(self):
         # Section to click the Easy Apply Button on job page
@@ -55,6 +61,9 @@ class LinkedinBot:
         html = self.driver.find_element_by_tag_name('html')
         html.send_keys(Keys.END)
         sleep(2)
+        html = self.driver.find_element_by_tag_name('html')
+        html.send_keys(Keys.END)
+        sleep(2)
         while len(easyJobs) == 0:
             try:
                 easyJobs = self.driver.find_elements_by_xpath("//*[text()='Easy Apply']/ancestor::*[@class='ember-view job-card-square__link display-flex flex-grow-1 flex-column align-items-stretch full-width js-focusable-card']")
@@ -68,9 +77,9 @@ class LinkedinBot:
         yehut = True
         while yehut:
             try:
-                jname = easyJobs[0].find_element_by_class_name('job-card-square__title').text
-                cname = easyJobs[0].find_element_by_class_name('job-card-container__company-name').text
-                lname = easyJobs[0].find_element_by_css_selector("li[data-test-job-card-square__location]").text
+                jname = easyJobs[cl].find_element_by_class_name('job-card-square__title').text
+                cname = easyJobs[cl].find_element_by_class_name('job-card-container__company-name').text
+                lname = easyJobs[cl].find_element_by_css_selector("li[data-test-job-card-square__location]").text
                 
                 with open('filename.txt', 'a') as f:
                     print(jname, "--", cname, "--", lname, file=f)
@@ -102,7 +111,7 @@ seri = 20  # number large enough to start the loop :-)
 
 while seri:
     Lbot.go_jobs()
-    sleep(10)
+    sleep(1)
     Lbot.click_job_card()
     Lbot.apply_job()
     seri -= 1
