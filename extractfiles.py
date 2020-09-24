@@ -12,7 +12,7 @@ def setupCD(url):
         print('chromedriver correctly installed')
         return 0
     try:
-        os.mkdir('chromedriver')
+        mkdir('chromedriver')
         request.urlretrieve(url, 'chromedriver/chromedriver_win32.zip')
         print('downloading the chromedriver...')
         sleep(30)
@@ -22,7 +22,7 @@ def setupCD(url):
     zip22.namelist()
     zip22.extractall('chromedriver')
     zip22.close()
-    os.remove('chromedriver/chromedriver_win32.zip')
+    remove('chromedriver/chromedriver_win32.zip')
     print("chromedriver installed.")
 
 setupCD(url)

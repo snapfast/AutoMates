@@ -200,3 +200,21 @@ Job Title
 Azure Data Engineer -- Fractal -- Bangalore, IN
 Job Title
 Cloud Engineer - Infrastructure -- Fractal -- Mumbai, IN
+Job Title
+Engineer, ReactJS -- Fractal -- Mumbai, IN
+Job Title
+Data Science / Machine Learning, Natural Language Processing (MSC Apprenticeship) -- LTI - Larsen & Toubro Infotech -- London, England Metropolitan Area
+Job Title
+Senior Data Engineer -- Explore Group -- London, England, United Kingdom
+Job Title
+Big Data Developer -- Tata Consultancy Services -- Chennai, Tamil Nadu, India
+Job Title
+Senior DevOps Engineer (Fintech, Regtech) -- Cogito Group Ltd -- London, United Kingdom
+Job Title
+DevOps Engineer -- Microland Limited -- Bengaluru, Karnataka, India
+Job Title
+DevOps Engineer -- airtel -- Noida, Uttar Pradesh, India
+Job Title
+Active Directory support -- Tata Consultancy Services -- Chennai, Tamil Nadu, India
+Job Title
+INTUNE ADMINISTRATOR -- Tata Consultancy Services -- Chennai, Tamil Nadu, India
