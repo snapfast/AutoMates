@@ -5,10 +5,12 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
 from time import sleep
 import random
 
-from selenium.webdriver.chrome.options import Options
+# import extractfiles
 
 
 class LinkedinBot:
@@ -16,12 +18,15 @@ class LinkedinBot:
         chrome_options = Options()
         chrome_options.add_argument("--user-data-dir=chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
-        chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
+        # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
         self.driver = webdriver.Chrome('/home/nightshade/bin/chromedriver', options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")
-        input()
         sleep(2)
+
+    def go_exit(self):
+        self.driver.close()
+        self.driver.quit()
 
     def go_jobs(self):
         sleep(2)
@@ -30,7 +35,6 @@ class LinkedinBot:
 
     def apply_job(self):
         # Section to click the Easy Apply Button on job page
-        sleep(2)
         gerat = True
         while gerat:
             try:
@@ -43,10 +47,17 @@ class LinkedinBot:
         sleep(2)
 
         gerat = True
+        cc = 5
         while gerat:
             try:
                 self.driver.find_element_by_xpath("//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
                 print('Next / Submit')
+                if cc == 0:
+                    if self.driver.find_element_by_class_name("t-14 fb-form-element-label__title--is-required").text == "City*":
+                        self.driver.find_element_by_class_name("artdeco-typeahead__input ").send_keys("Ambala, Haryana, India")
+                    #input("please enter appropriate data on web page, then press any key here...")
+                    cc = 5
+                cc -= 1
                 sleep(2)
             except NoSuchElementException:
                 gerat = False
@@ -54,11 +65,14 @@ class LinkedinBot:
 
     def click_job_card(self):
         # jobs = self.driver.find_elements_by_xpath('//*[text()="Easy Apply")]')
-        sleep(10)
         easyJobs = []
+        html = self.driver.find_element_by_tag_name('html')
+        html.send_keys(Keys.END)
+        sleep(1)
+        html = self.driver.find_element_by_tag_name('html')
+        html.send_keys(Keys.END)
+        sleep(4)
         while len(easyJobs) == 0:
-            # html = self.driver.find_element_by_tag_name('html')
-            # html.send_keys(Keys.END)
             try:
                 easyJobs = self.driver.find_elements_by_xpath("//*[text()='Easy Apply']/ancestor::*[@class='ember-view job-card-square__link display-flex flex-grow-1 flex-column align-items-stretch full-width js-focusable-card']")
             except NoSuchElementException:
@@ -66,26 +80,24 @@ class LinkedinBot:
             print(len(easyJobs))
         # jobs = self.driver.find_elements_by_xpath("//li[contains(text(), 'Easy Apply')]")
         print(len(easyJobs))
-        # cl = random.randint(0, len(easyJobs)-1)
-        jname = easyJobs[0].find_element_by_class_name('job-card-square__title').text
-        cname = easyJobs[0].find_element_by_class_name('job-card-container__company-name').text
-        # lname = easyJobs[0].find_element_by_class_name('job-card-square__text--1-line artdeco-entity-lockup__caption ember-view').text
-        lname = easyJobs[0].find_element_by_css_selector("li[data-test-job-card-square__location]").text
-        
-        with open('filename.txt', 'a') as f:
-            print(jname, "--", cname, "--", lname, file=f)
-        easyJobs[0].click()
-        ''' uncomment this block if you have Linkedin Premi
+        cl = random.randint(0, len(easyJobs)-1)
+        print('clicking the {} job'.format(cl))
         yehut = True
         while yehut:
             try:
+                jname = easyJobs[cl].find_element_by_class_name('job-card-square__title').text
+                cname = easyJobs[cl].find_element_by_class_name('job-card-container__company-name').text
+                lname = easyJobs[cl].find_element_by_css_selector("li[data-test-job-card-square__location]").text
+                
+                with open(r'filename.txt', 'a') as f:
+                    print(jname, "--", cname, "--", lname, file=f)
+                self.driver.execute_script("arguments[0].scrollIntoView(true);", easyJobs[cl]) ## scrolling to see element
                 easyJobs[cl].click()
                 yehut = False
             except ElementNotInteractableException:
                 print('scroll a bit please, cannot see the element yet')
                 sleep(2)
         sleep(2)
-        '''
 
     def check_job_card(self):  # checks if there are any job cards on the page.
         try:
@@ -108,7 +120,9 @@ seri = 20  # number large enough to start the loop :-)
 
 while seri:
     Lbot.go_jobs()
-    sleep(10)
+    sleep(1)
     Lbot.click_job_card()
     Lbot.apply_job()
     seri -= 1
+
+Lbot.go_exit()

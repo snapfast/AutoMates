@@ -312,3 +312,109 @@ Job Title
 Oracle Primavera Unifier Architect -- Wipro Limited -- Bengaluru, Karnataka, India
 Job Title
 Python Developer -- UST Global -- Bengaluru, Karnataka, India
+Job Title
+Build And Release Engineer -- Tata Consultancy Services -- London, England, United Kingdom
+Job Title
+Senior DevOps Engineer -- Explore Group -- London, England, United Kingdom
+Job Title
+Vlocity Architect -- Tata Consultancy Services -- City of London, England, United Kingdom
+Job Title
+Application Support Team Lead -- ITR Partners -- Gloucester, England, United Kingdom
+Job Title
+Java Software Engineer - Fintech -- Salt -- London, England, United Kingdom
+Job Title
+Principal Member Of Technical Staff- Fullstack JAVA -- [24]7.ai -- Bengaluru, Karnataka, India
+Job Title
+Windows Systems Automation Engineer -- Quant Capital -- London, England, United Kingdom
+Job Title
+Software Developer -- Playtech -- London, England, United Kingdom
+Job Title
+DevOps Engineer -- RateSetter -- 55 Bishopsgate , London EC2N 3AS, GB
+Job Title
+Cloud Engineer -- Hydrogen Group -- Edinburgh, GB
+Job Title
+Lead Cloud Security Engineer -- Iceberg (Cyber Security) -- London, England, United Kingdom
+Job Title
+Data Engineer - Tech Analysis -- Harnham -- London, England, United Kingdom
+Job Title
+Software Developer In Test -- Quant Capital -- SW19 7QW, London, England, United Kingdom
+Job Title
+Senior Fullstack Engineer (Core Java, Javascript, HTML, CSS, Microservices) -- Oracle -- Bengaluru, Karnataka, India
+Job Title
+DevOps Engineer -- Quant Capital -- London, England, United Kingdom
+Job Title
+Release/Cloud Ops Engineer -- FireEye, Inc. -- Bangalore, IN
+Job Title
+HVR Consultant -- Tech Mahindra -- Hyderabad, Telangana, India
+Job Title
+Data Pipeline Developer -- SKS Enterpprises - Human Resource Planning and Management -- Mumbai, Maharashtra, India
+Job Title
+Senior Java Developer (Cloud, Core Java, Microservices, Docker, Kubernetes, Terraform) -- Oracle -- Bengaluru, Karnataka, India
+Job Title
+Senior Data Engineer -- StaffHost Europe -- Oslo, Norway
+Job Title
+DevOps Engineer -- iSoftBet -- London, England, United Kingdom
+Job Title
+Senior Data Engineer -- Mana Search -- London, England, United Kingdom
+Job Title
+Principal Engineer - Consulting, Microservices, CI/CD - London -- Oliver Bernard -- London, GB
+Job Title
+Senior Solutions Architect -- StaffHost Europe -- Copenhagen, Capital Region, Denmark
+Job Title
+Sailpoint Developer -- Tata Consultancy Services -- Delhi, India
+Job Title
+DevOps Manager -- Quant Capital -- EC4N 1SA, London, England, United Kingdom
+Job Title
+DevOps Capability Lead -- Lorien -- London, England, United Kingdom
+Job Title
+Software Developer 3 -- Oracle -- Hyderabad, Telangana, India
+Job Title
+Staff SW Dev Engineer - Full stack : Golang and Cloud with Networking Exp -- FireEye, Inc. -- Bangalore, IN
+Job Title
+Functional Programmer -- Mana Search -- London, England Metropolitan Area
+Job Title
+Cloud Engineer/Sr Cloud Engineer -- Cloud.in -- Pune, Maharashtra, India
+Job Title
+Azure ML Engineer -- Fractal -- Bangalore, IN
+Job Title
+Application Support Team Lead -- ITR Partners -- Gloucester, England, United Kingdom
+Job Title
+Snr Cloud Security Engineer – £75-100K – GCP, Kubernetes, Go -- Oliver Bernard -- London, England, United Kingdom
+Job Title
+Fusion Absence Cloud Functional Consultant -- Tata Consultancy Services -- City of London, England, United Kingdom
+Job Title
+Software Developer 3 -- Oracle -- Hyderabad, Telangana, India
+Job Title
+Artificial Intelligence/Machine Learning Expert -- Tata Consultancy Services -- Bengaluru, Karnataka, India
+Job Title
+Sr / SW Dev Engineer - 'Modern C++' -- FireEye, Inc. -- Bangalore, IN
+Job Title
+Software Developer -- ClearSky Logic -- Edinburgh, Scotland, United Kingdom
+Job Title
+Artificial Intelligence/Machine Learning Expert -- Tata Consultancy Services -- Bengaluru, Karnataka, India
+Job Title
+AWS Developer -- Integrated Personnel Services Limited -- Pune, Maharashtra, India
+Job Title
+Software Data Engineer -- MBN Solutions -- Edinburgh, Scotland, United Kingdom
+Job Title
+Puppet Developer -- Wipro Limited -- Bengaluru, Karnataka, India
+Job Title
+Full Stack Engineer -- ManpowerGroup India -- Hyderabad, Telangana, India
+Job Title
+SE/ SSE- Devops- Immediate Joiner needed -- UST Global -- Hyderabad, Telangana, India
+Job Title
+Sr. Technical Lead -- UST Global -- Thiruvananthapuram, Kerala, India
+Job Title
+Python Developer -- UST Global -- Bengaluru, Karnataka, India
+Job Title
+MLOps Engineer -- Fractal -- Bangalore, IN
+Job Title
+Python Developer -- Quant Capital -- London, United Kingdom
+Job Title
+Sr. Software Engineer (Vice President) – C#, .Net -- SKS Enterpprises - Human Resource Planning and Management -- Mumbai, Maharashtra, India
+Job Title
+Senior Data Engineer -- Oliver Bernard -- London, GB
+Job Title
+Technical Support Engineer - Hedge Fund - Up to £60,000 -- Hunter Bond -- London, England Metropolitan Area
+Job Title
+Software Engineer -- JUST EAT -- London, England, United Kingdom
