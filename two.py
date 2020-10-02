@@ -25,7 +25,7 @@ from selenium.webdriver.chrome.options import Options
 from time import sleep
 import random
 
-# import extractfiles
+import extractfiles
 
 
 class LinkedinBot:
