@@ -51,11 +51,11 @@ class LinkedinBot:
         while gerat:
             try:
                 self.driver.find_element_by_xpath("//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
-                print('Next / Submit')
+                print('Next / Submit', cc)
                 if cc == 0:
-                    if self.driver.find_element_by_class_name("t-14 fb-form-element-label__title--is-required").text == "City*":
-                        self.driver.find_element_by_class_name("artdeco-typeahead__input ").send_keys("Ambala, Haryana, India")
-                    #input("please enter appropriate data on web page, then press any key here...")
+                    # if self.driver.find_element_by_class_name("t-14 fb-form-element-label__title--is-required").text == "City*":
+                    #     self.driver.find_element_by_class_name("artdeco-typeahead__input ").send_keys("Ambala, Haryana, India")
+                    input("please enter appropriate data on web page, then press any key here...")
                     cc = 5
                 cc -= 1
                 sleep(2)
@@ -94,6 +94,8 @@ class LinkedinBot:
                 self.driver.execute_script("arguments[0].scrollIntoView(true);", easyJobs[cl]) ## scrolling to see element
                 easyJobs[cl].click()
                 yehut = False
+            except NoSuchElementException:
+                cname = "aww! snap"
             except ElementNotInteractableException:
                 print('scroll a bit please, cannot see the element yet')
                 sleep(2)
