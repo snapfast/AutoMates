@@ -89,7 +89,7 @@ class LinkedinBot:
                 cname = easyJobs[cl].find_element_by_class_name('job-card-container__company-name').text
                 lname = easyJobs[cl].find_element_by_css_selector("li[data-test-job-card-square__location]").text
                 
-                with open(r'filename.txt', 'a') as f:
+                with open(r'appliedjobs.txt', 'a') as f:
                     print(jname, "--", cname, "--", lname, file=f)
                 self.driver.execute_script("arguments[0].scrollIntoView(true);", easyJobs[cl]) ## scrolling to see element
                 easyJobs[cl].click()
