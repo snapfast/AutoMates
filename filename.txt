@@ -312,3 +312,37 @@ Job Title
 Oracle Primavera Unifier Architect -- Wipro Limited -- Bengaluru, Karnataka, India
 Job Title
 Python Developer -- UST Global -- Bengaluru, Karnataka, India
+Job Title
+Engineering Manager, Site Reliability Engineering -- Tally Inc -- Vancouver, British Columbia, Canada
+Job Title
+Software Dev Engineer (Python, Cloud and Front end) -- FireEye, Inc. -- Bangalore, IN
+Job Title
+VDI Architect -- Microland Limited -- Bengaluru, Karnataka, India
+Job Title
+Data Scientist -- Microland Limited -- Bengaluru, Karnataka, India
+Job Title
+Sr SW Engineer -- FireEye, Inc. -- Bangalore, IN
+Job Title
+Principal Devops Engineer -- Sophos -- Bengaluru, Karnataka, India
+Job Title
+SAP Architect -- Microland Limited -- Bengaluru, Karnataka, India
+Job Title
+Software Engineer - UI -- LinkedIn -- Bangalore
+Job Title
+Principal Engineer - DevOps Tools Development -- BlueJeans by Verizon -- Bengaluru, Karnataka, India
+Job Title
+AWS Cloud Architect -- ITC Infotech -- Bengaluru, Karnataka, India
+Job Title
+Alliance Lead -- Wipro Limited -- Bengaluru, Karnataka, India
+Job Title
+DevOps Architect -- DIGITAL HARBOR, Inc. -- Bengaluru Area, India
+Job Title
+AWS Architecture -- Accenture -- Greater Bengaluru Area
+Job Title
+DevOps Engineer Lead -- upGrad -- Bengaluru, Karnataka, India
+Job Title
+AWS Solution Architect -- Tata Consultancy Services -- Noida, Uttar Pradesh, India
+Job Title
+DevOps/SRE Engineer -- Cambium Networks -- Bengaluru, Karnataka, India
+Job Title
+Backend Engineer, Python -- Fractal -- Mumbai, IN
