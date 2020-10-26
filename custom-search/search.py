@@ -31,7 +31,7 @@ class LinkedinBot():
         sleep(2)
         box = self.driver.find_elements_by_class_name("jobs-search-box__text-input")
         print(box, len(box))
-        box[0].send_keys("linux administrator")
+        box[0].send_keys("site reliability engineer")
         box[2].send_keys("India")
         sleep(5)
         self.driver.find_element_by_xpath("//button[text()='Search']").click()

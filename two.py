@@ -112,15 +112,6 @@ class LinkedinBot:
                 sleep(2)
         sleep(2)
 
-    def check_job_card(self):  # checks if there are any job cards on the page.
-        try:
-            card_list = self.driver.find_element_by_class_name("job-card-square__link").click()
-        except NoSuchElementException:
-            print("selenium.common.exceptions.NoSuchElementException")
-            card_list = []
-        print(card_list)
-        return len(card_list)
-
     def _get_names(self):
         print('hello')
 
