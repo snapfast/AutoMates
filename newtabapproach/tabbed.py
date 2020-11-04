@@ -25,9 +25,9 @@ class LinkedinBot:
         self.driver.get("https://linkedin.com/jobs")
         sleep(2)
 
-    def go_exit(self, space):
-        self.space.close()
-        self.space.quit()
+    def go_exit(self):
+        self.driver.close()
+        self.driver.quit()
 
     def click_job(self):
         # jobs = self.driver.find_elements_by_xpath('//*[text()="Easy Apply")]')
@@ -38,7 +38,7 @@ class LinkedinBot:
         sleep(2)
         html = self.driver.find_element_by_tag_name('html')
         html.send_keys(Keys.END)
-        sleep(2)
+        sleep(10)
         while len(easyJobs) == 0:
             try:
                 easyJobs = self.driver.find_elements_by_xpath(
@@ -126,5 +126,6 @@ class LinkedinBot:
             print(ns, "window might have been closed by usre Rahul Bali.")
 
 
-l = LinkedinBot()
-l.click_job()
+lo = LinkedinBot()
+lo.click_job()
+lo.go_exit()

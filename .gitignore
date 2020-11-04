@@ -4,6 +4,7 @@ venv/
 chrome-data/
 chromedriver/
 secrets.py
+*.log
 *.txt
 
 
