@@ -10,9 +10,7 @@ pip3 install -r requirements.txt
 ```
 
 Enter your username, password, and search settings into the `` file
-
 ```yaml
-
 ```
 __NOTE: AFTER EDITING SAVE FILE, DO NOT COMMIT FILE__
 

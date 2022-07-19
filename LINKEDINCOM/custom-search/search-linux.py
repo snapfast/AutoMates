@@ -1,11 +1,19 @@
+from os import *
+
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 from time import sleep
 import random
+
+home_directory = path.expanduser("~")
+local_bin_directory = home_directory + '/bin/'
 
 
 class LinkedinBot():
@@ -13,11 +21,13 @@ class LinkedinBot():
         # term = self.term
         # country = self.country
         chrome_options = Options()
-        chrome_options.add_argument("--user-data-dir=chrome-data")
+        chrome_options.add_argument(f"--user-data-dir={local_bin_directory}/chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
         # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
-        self.driver = webdriver.Chrome('/home/nightshade/bin/chromedriver', options=chrome_options)
+        service = Service(local_bin_directory + '/chromedriver/chromedriver')
+
+        self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")
         sleep(2)
 
@@ -26,60 +36,73 @@ class LinkedinBot():
         self.driver.quit()
 
     def do_search(self):
-        sleep(2)
-        box = self.driver.find_elements_by_class_name("jobs-search-box__text-input")
-        # print(box, len(box))
+        box = self.driver.find_elements(by=By.CLASS_NAME, value="jobs-search-box__text-input")
+        print(box, len(box))
+        box[0].click()
+        sleep(1)
         box[0].send_keys("site reliability engineer")
-        box[2].send_keys("India")
-        sleep(5)
-        self.driver.find_element_by_xpath("//button[text()='Search']").click()
+        box[3].send_keys("Australia\n")
+
+        # submit = self.driver.find_element(by=By.CLASS_NAME, value="jobs-search-box__submit-button")
+        # submit.click()
+        # ActionChains(self.driver).key_down(Keys.ENTER).key_up(Keys.ENTER).perform()
 
     def click_easy_jobs(self):
-        sleep(30)
+        sleep(15)
         try:
-            easyJobs = self.driver.find_elements_by_xpath("//*[text()='Easy Apply']/ancestor::*[@class='jobs-search-results__list list-style-none']")
+            left_panel_jobs = self.driver.find_elements(by=By.CLASS_NAME,value="jobs-search-results__list-item")
+            # easyJobs = self.driver.find_elements(by=By.XPATH, value="//*[text()='Easy Apply']/ancestor::*[@class='jobs-search-results__list-item']")
         except NoSuchElementException as NoSuch:
             print(NoSuch, "\n cool")
-        print(len(easyJobs))
-        gather_jobs = self.driver.find_elements_by_class_name("jobs-search-results__list-item")
-        ## brings total number of jobs out of the main job search page , actually no need in this file.
-        for onejob in range(200):
-            # Section to click the Easy Apply Button on job page
-            # Real work starts here
-            # Now we click each job in the left column, based on the total jobs on each page
-            # simply click to start
-            print(onejob, gather_jobs)
-            gather_jobs[onejob].click()
-            gerat = True
-            while 1:
-                # check if job already applied
-                sleep(6)
+        print(len(left_panel_jobs))
+        for onejob in left_panel_jobs:
+            try:
+                easyJob = onejob.find_element(by=By.LINK_TEXT, value="Easy Apply")
+            except Exception as e:
+                raise e
+            if easyJob:
                 try:
-                    self.driver.find_element_by_xpath("//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
-                    print('Clicked the Easy Button')
-                    break
-                except NoSuchElementException:
-                    print('Cannot find the button, automatically clicking NEXT Job')
-                    gerat = False
+                    onejob.click()
+                except Exception as e:
+                    raise e
+                gerat = True
+                while 1:
+                    # check if job already applied
                     sleep(6)
-            sleep(2)
+                    try:
+                        self.driver.find_element(by=By.XPATH, value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
+                        print('Clicked the Easy Button')
+                        break
+                    except NoSuchElementException:
+                        print('Cannot find the button, automatically clicking NEXT Job')
+                        gerat = False
+                        sleep(6)
+                sleep(2)
 
-            cc = 5
-            while gerat:
-                try:
-                    self.driver.find_element_by_xpath("//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
-                    print('Next / Submit')
-                    if cc == 0:
-                        input("please enter appropriate data on web page, then press any key here...")
-                        cc = 5
-                    cc -= 1
-                    sleep(2)
-                except NoSuchElementException:
-                    gerat = False
-            print("job applied")
-            self.driver.find_element_by_class_name("artdeco-modal__dismiss").click()
+                cc = 5
+                while gerat:
+                    try:
+                        try:
+                            self.driver.find_element(by=By.ID, value="follow-company-checkbox").click()
+                            print("unchecked")
+                        except Exception as e:
+                            print(e, "no checkbox")
+                        self.driver.find_element(by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary']").click()
+                        print('Next / Submit')
+                        if cc == 0:
+                            input("please enter appropriate data on web page, then press any key here...")
+                            cc = 5
+                        cc -= 1
+                        sleep(2)
+                    except NoSuchElementException:
+                        gerat = False
+                print("job applied")
+
 
 gg = LinkedinBot()
 gg.do_search()
 # gg.scroll_jobs()
-gg.click_easy_jobs()
+try:
+    gg.click_easy_jobs()
+except Exception:
+    gg.driver.close()

@@ -1,26 +1,34 @@
 # this file uses local storage folder for browser data
 # login to the account before executing the actual script
+from os import *
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, NoSuchWindowException
 from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 from time import sleep
 import random
+
+home_directory = path.expanduser("~")
+local_bin_directory = home_directory + '/bin/'
 
 
 class LinkedinBot:
 
     def __init__(self):
         chrome_options = Options()
-        chrome_options.add_argument("--user-data-dir=chrome-data")
+        # chrome_options.add_argument("--user-data-dir=chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
         # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
-        self.driver = webdriver.Chrome('/home/nightshade/bin/chromedriver', options=chrome_options)
+        service = Service(local_bin_directory + '/chromedriver/chromedriver')
+
+        self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")
         sleep(2)
 
@@ -32,16 +40,15 @@ class LinkedinBot:
         # jobs = self.driver.find_elements_by_xpath('//*[text()="Easy Apply")]')
         easyJobs = []
         sleep(2)
-        html = self.driver.find_element_by_tag_name('html')
+        html = self.driver.find_element(by=By.TAG_NAME, value='html')
         html.send_keys(Keys.END)
         sleep(2)
-        html = self.driver.find_element_by_tag_name('html')
+        html = self.driver.find_element(by=By.TAG_NAME, value='html')
         html.send_keys(Keys.END)
         sleep(10)
         while len(easyJobs) == 0:
             try:
-                easyJobs = self.driver.find_elements_by_xpath(
-                    "//*[text()='Easy Apply']/ancestor::*[@class='ember-view job-card-square__link display-flex flex-grow-1 flex-column align-items-stretch full-width js-focusable-card']")
+                easyJobs = self.driver.find_element(by=By.XPATH, value="//*[text()='Easy Apply']/ancestor::*[@class='ember-view job-card-square__link display-flex flex-grow-1 flex-column align-items-stretch full-width js-focusable-card']")
             except NoSuchElementException as xx:
                 print(xx, "is not there..")
             print(len(easyJobs))
@@ -86,8 +93,8 @@ class LinkedinBot:
         gerat = True
         while gerat:
             try:
-                self.driver.find_element_by_xpath(
-                    "//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
+                self.driver.find_element(by=By.XPATH,
+                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
                 print('Clicked the Easy Button')
                 gerat = False
             except NoSuchElementException:
@@ -102,8 +109,8 @@ class LinkedinBot:
         cc = 5
         while gerat:
             try:
-                self.driver.find_element_by_xpath(
-                    "//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
+                self.driver.find_element(by=By.XPATH,
+                    value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
                 print('Next / Submit', cc)
                 if cc == 0:
                     # if self.driver.find_element_by_class_name("t-14 fb-form-element-label__title--is-required").text == "City*":
