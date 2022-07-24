@@ -22,7 +22,7 @@ class LinkedinBot:
 
     def __init__(self):
         chrome_options = Options()
-        # chrome_options.add_argument("--user-data-dir=chrome-data")
+        chrome_options.add_argument(f"--user-data-dir={local_bin_directory}/chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
         # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
