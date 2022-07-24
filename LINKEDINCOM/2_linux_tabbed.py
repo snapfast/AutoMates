@@ -1,6 +1,6 @@
 # this file uses local storage folder for browser data
 # login to the account before executing the actual script
-from os import *
+from os import path
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, NoSuchWindowException
@@ -43,15 +43,17 @@ class LinkedinBot:
         html = self.driver.find_element(by=By.TAG_NAME, value='html')
         html.send_keys(Keys.END)
         sleep(2)
-        html = self.driver.find_element(by=By.TAG_NAME, value='html')
+        html.send_keys(Keys.END)
+        sleep(2)
+        html.send_keys(Keys.END)
+        sleep(2)
         html.send_keys(Keys.END)
         sleep(10)
-        while len(easyJobs) == 0:
-            try:
-                easyJobs = self.driver.find_element(by=By.XPATH, value="//*[text()='Easy Apply']/ancestor::*[@class='ember-view job-card-square__link display-flex flex-grow-1 flex-column align-items-stretch full-width js-focusable-card']")
-            except NoSuchElementException as xx:
-                print(xx, "is not there..")
-            print(len(easyJobs))
+        try:
+            easyJobs = self.driver.find_elements(by=By.XPATH, value="//*[text()='Easy Apply']/ancestor::*[@class='list-style-none clear-both mt2']")
+        except NoSuchElementException as xx:
+            print(xx, "is not there..")
+        print(len(easyJobs))
         # jobs = self.driver.find_elements_by_xpath("//li[contains(text(), 'Easy Apply')]")
         total_jobs = len(easyJobs)
         original_window = self.driver.current_window_handle
@@ -63,25 +65,33 @@ class LinkedinBot:
         yehut = True
         while cl < total_jobs:
             try:
-                jname = easyJobs[cl].find_element_by_class_name(
-                    'job-card-square__title').text
-                '''
-                cname = easyJobs[cl].find_element_by_class_name(
-                    'job-card-container__company-name').text
-                lname = easyJobs[cl].find_element_by_css_selector(
-                    "li[data-test-job-card-square__location]").text
-                '''
+                job_name_element = easyJobs[cl].find_element(
+                    by=By.CLASS_NAME, value='job-card-list__title') #job-card-container__link
+                jname = job_name_element.text
+                job_url = job_name_element.get_attribute('href')
+
+                print(jname, job_url)
+
+                cname = easyJobs[cl].find_element(
+                    by=By.CLASS_NAME, value='app-aware-link').text
+
+                lname = easyJobs[cl].find_element(
+                    by=By.CLASS_NAME, value="job-card-container__metadata-item").text
+
                 with open(r'filename.txt', 'a') as f:
                     print(jname, file=f)
                 self.driver.execute_script(
                     "arguments[0].scrollIntoView(true);", easyJobs[cl])
                 action = ActionChains(self.driver)
-                action.key_down(Keys.CONTROL).click(easyJobs[cl]).key_up(Keys.CONTROL).perform()
-                # self.driver.switch_to.new_window('tab')
+                # action.move_to_element(job_name_element).key_down(Keys.CONTROL).click(job_name_element).key_up(Keys.CONTROL).perform()
+                # action.key_down(Keys.CONTROL).send_keys("t").perform()
+                self.driver.switch_to.new_window('tab')
                 # .get(easyJobs[cl].get_attribute('href'))
-                self.driver.switch_to.window(self.driver.window_handles[1])
+                self.driver._switch_to.window(self.driver.window_handles[1])
+                self.driver.get(job_url)
+                sleep(2)
                 self.apply_job()
-                self.driver.switch_to.window(original_window)
+                self.driver._switch_to.window(original_window)
                 cl += 1
             except ElementNotInteractableException:
                 print('scroll a bit please, cannot see the element yet')
@@ -108,6 +118,12 @@ class LinkedinBot:
         gerat = True
         cc = 5
         while gerat:
+            try:
+                self.driver.find_element(
+                    by=By.CLASS_NAME, value="relative mt5 ph5").click()
+                print("clicked uncheck")
+            except Exception as e:
+                print(e, "no checkbox")
             try:
                 self.driver.find_element(by=By.XPATH,
                     value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
