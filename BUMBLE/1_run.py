@@ -18,6 +18,8 @@ local_bin_directory = home_directory + '/bin/'
 class BumbleBot:
 
     def __init__(self):
+
+        print(local_bin_directory)
         chrome_options = Options()
         chrome_options.add_argument(f"--user-data-dir={local_bin_directory}/chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
