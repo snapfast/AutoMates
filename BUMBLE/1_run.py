@@ -37,14 +37,20 @@ class BumbleBot:
 
     def right_swipe(self):
         sleep(2)
+        count = 1
         while 1:
-            sleep(random.randint(3, 13))
+            sleep(random.randint(3, 6))
             try:
                 like = self.driver.find_element(
                     by=By.CLASS_NAME, value="encounters-action--like")
+                info = self.driver.find_element(
+                    by=By.CLASS_NAME, value="encounters-story-profile")
             except NoSuchElementException as xx:
                 print(xx, "is not there..")
             like.click()
+            print(info.text)
+            print(f"Number: {count} -----------------------------")
+            count += 1
 
 
 b = BumbleBot()
