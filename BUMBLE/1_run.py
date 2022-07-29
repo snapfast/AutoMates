@@ -21,9 +21,11 @@ class BumbleBot:
 
         print(local_bin_directory)
         chrome_options = Options()
-        chrome_options.add_argument(f"--user-data-dir={local_bin_directory}/chrome-data")
+        chrome_options.add_argument(f"--user-data-dir={local_bin_directory}\
+            /chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
-        # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
+        # chrome_options.add_experimental_option('excludeSwitches',
+        # ["enable-automation"])
 
         service = Service(local_bin_directory + '/chromedriver/chromedriver')
 

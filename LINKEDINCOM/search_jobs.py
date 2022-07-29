@@ -106,6 +106,57 @@ class LinkedinBot():
                         return 0
                 print("job applied")
 
+    def apply_job(self):
+        # Section to click the Easy Apply Button on job page
+        gerat = True
+        while gerat:
+            try:
+                self.driver.find_element(by=By.XPATH,
+                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
+                print('Clicked the Easy Button')
+                gerat = False
+            except NoSuchElementException:
+                print('Cannot find the button, click Another Job')
+                sleep(6)
+            except NoSuchWindowException as win:
+                print("no window bro... ok, I believe you closed it.")
+                gerat = False
+        sleep(2)
+
+        gerat = True
+        cc = 5
+        while gerat:
+            try:
+                self.driver.find_element(
+                    by=By.CLASS_NAME, value="relative mt5 ph5").click()
+                print("clicked uncheck")
+            except Exception as e:
+                print(e, "no checkbox")
+            try:
+                self.driver.find_element(by=By.XPATH,
+                    value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
+                print('Next / Submit', cc)
+                if cc == 0:
+                    # if self.driver.find_element_by_class_name("t-14 fb-form-element-label__title--is-required").text == "City*":
+                    #     self.driver.find_element_by_class_name("artdeco-typeahead__input ").send_keys("Ambala, Haryana, India")
+                    input(
+                        "please enter appropriate data on web page, then press any key here...")
+                    cc = 5
+                cc -= 1
+                sleep(2)
+            except NoSuchElementException:
+                gerat = False
+            except NoSuchWindowException as win:
+                print("no window bro... ok, I believe you closed it.")
+                gerat = False
+        print("job applied")
+        try:
+            self.driver.close()
+        except NoSuchWindowException as ns:
+            print(ns, "window might have been closed by usre Rahul Bali.")
+
+
+
 
 gg = LinkedinBot()
 gg.do_search()
