@@ -48,8 +48,8 @@ class BumbleBot:
             except NoSuchElementException as xx:
                 print(xx, "is not there..")
             like.click()
-            print(info.text)
             print(f"Number: {count} -----------------------------")
+            print(info.text)
             count += 1
 
 
