@@ -42,7 +42,7 @@ class LinkedinBot():
         box[0].click()
         sleep(1)
         box[0].send_keys(argv[1])  # job title
-        box[3].send_keys("Japan\n")  # location
+        box[3].send_keys(argv[2] + "\n")  # location
 
     def click_easy_jobs(self):
         sleep(5)
