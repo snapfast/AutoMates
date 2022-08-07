@@ -10,17 +10,17 @@ pip3 install selenium
 ```
 
 ### Linkedin
-```
+```python
 python3 recommended_jobs.py  # to apply for recommended jobs in Jobs Section
 python3 search_jobs.py "software engineer" gurgaon  # to search for jobs per location
 ```
 
 ### Bumble
-```
+```python
 python3 run.py # just right swipe only, it does a right swipe on random time, 3 secs to 13 secs.
 ```
 
-### Angel
+### Angel List
 TBD
 
 
