@@ -19,7 +19,7 @@ python3 search_jobs.py "software engineer" gurgaon  # to search for jobs per loc
 
 ### Bumble
 ```python
-python3 run.py # just right swipe only, it does a right swipe on random time, 3 secs to 13 secs.
+python3 swipe.py # just right swipe only, it does a right swipe on random time, 3 secs to 13 secs.
 ```
 
 ### Angel List

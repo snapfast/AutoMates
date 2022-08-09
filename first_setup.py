@@ -1,5 +1,4 @@
 from os import *
-from threading import local
 from urllib import request
 from zipfile import ZipFile
 from time import sleep
