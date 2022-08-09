@@ -11,6 +11,8 @@ Run the command to install the only package needed `selenium`.
 2. `python first_setup.py`
 3. Run anything from below.
 
+## Usage
+
 ### Linkedin
 ```python
 python3 recommended_jobs.py  # to apply for recommended jobs in Jobs Section
@@ -28,10 +30,8 @@ TBD
 
 __NOTE: RAISE ISSUE IF SOMETHING NOT WORKING ;)__
 
-### Uploads
+## Points to Note
 
-There is no limit to the number of files you can list in the uploads section. 
-The program takes the titles from the input boxes and tries to match them with 
-list in the config file.
+There is no upload feature yet, files should be manually pre-uploaded.
 
 
