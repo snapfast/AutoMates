@@ -4,10 +4,12 @@ Automate the finding people/jobs on Apps like LinkedIn, Bumble, AngelList.
 
 ## Setup 
 
-Run the command to install the only package needed `selenium`.
-```bash
-pip3 install selenium
-```
+Run the command to install the only package needed `selenium`.  
+*Optional: Create separate python environment.*
+
+1. `pip3 install selenium`
+2. `python first_setup.py`
+3. Run anything from below.
 
 ### Linkedin
 ```python
@@ -24,7 +26,7 @@ python3 run.py # just right swipe only, it does a right swipe on random time, 3 
 TBD
 
 
-__NOTE: DO NOT COMMIT FILE__
+__NOTE: RAISE ISSUE IF SOMETHING NOT WORKING ;)__
 
 ### Uploads
 
