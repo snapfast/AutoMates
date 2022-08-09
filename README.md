@@ -1,5 +1,5 @@
-# AutoEasyApply
-Automate the application process on LinkedIn,AngelList.
+# AutoMates
+Automate the finding people/jobs on Apps like LinkedIn, Bumble, AngelList.
 
 
 ## Setup 
