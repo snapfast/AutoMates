@@ -11,7 +11,8 @@ this file applies to Easy Job Recommendations on the Jobs page of Linkedin.
 from os import path
 
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException, NoSuchWindowException
+from selenium.common.exceptions import NoSuchWindowException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
@@ -127,11 +128,14 @@ class LinkedinBot:
         cc = 5
         while gerat:
             try:
-                self.driver.find_element(
-                    by=By.CLASS_NAME, value="relative mt5 ph5").click()
+                popup = self.driver.find_element(
+                    by=By.CLASS_NAME, value="artdeco-modal--layer-default")
+                popup.find_element(
+                    by=By.XPATH,
+                    value="//label[@for='follow-company-checkbox']")
                 print("clicked uncheck")
-            except Exception as e:
-                print(e, "no checkbox")
+            except Exception:
+                print("no checkbox")
             try:
                 self.driver.find_element(by=By.XPATH,
                     value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
