@@ -22,8 +22,8 @@ python LINKEDIN/search_jobs.py "software engineer" gurgaon  # to search for jobs
 ```
 ### Naukari
 ```python
-python Naukari/recommended_jobs.py  # to apply for recommended jobs in Jobs Section
-python Naukari/search_jobs.py "angular developer" bangalore  # to search for jobs per location
+python NAUKRI/recommended_jobs.py  # to apply for recommended jobs in Jobs Section
+python NAUKRI/search_jobs.py "angular developer" bangalore  # to search for jobs per location
 ```
 
 ### Bumble
