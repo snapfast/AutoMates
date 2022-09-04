@@ -1,3 +1,5 @@
+dist/
+build/
 __pycache__/
 .vscode/
 venv/
@@ -6,5 +8,6 @@ chromedriver/
 secrets.py
 *.log
 *.txt
+*.spec
 
 

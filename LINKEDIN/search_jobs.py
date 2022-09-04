@@ -36,13 +36,13 @@ class LinkedinBot():
         self.driver.close()
         self.driver.quit()
 
-    def do_search(self):
+    def do_search(self, position, location):
         box = self.driver.find_elements(
             by=By.CLASS_NAME, value="jobs-search-box__text-input")
         box[0].click()
         sleep(1)
-        box[0].send_keys(argv[1])  # job title
-        box[3].send_keys(argv[2] + "\n")  # location
+        box[0].send_keys(position)  # job title
+        box[3].send_keys(location + "\n")  # location
 
     def click_easy_jobs(self):
         sleep(5)
@@ -155,7 +155,12 @@ class LinkedinBot():
             print(ns, "window might have been closed by user.")
 
 
-lb = LinkedinBot()
-lb.do_search()
-lb.click_easy_jobs()
+
+if __name__ == '__main__':
+    position = argv[1]
+    location = argv[2]
+
+    lb = LinkedinBot()
+    lb.do_search(position, location)
+    lb.click_easy_jobs()
 

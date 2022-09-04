@@ -100,5 +100,6 @@ class NaukriBot:
         sleep(2)
 
 
-lo = NaukriBot()
-lo.click_job()
+if __name__ == '__main__':
+    lo = NaukriBot()
+    lo.click_job()

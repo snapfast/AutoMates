@@ -7,14 +7,28 @@ from time import sleep
 home_directory = path.expanduser("~")
 local_binary_directory = home_directory + '/bin/'
 
+stable_release_version_url = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
+
 # change this url to correct version of the chrome installed on your system
 # get the chrome version > Chrome > About Chrome < Copy Paste that number here.
-url = 'https://chromedriver.storage.googleapis.com/\
-103.0.5060.134/chromedriver_win32.zip'
 
+distribution = {
+    "linux": "linux64",
+    "mac": "mac64",
+    "mac_m1": "mac64_m1",
+    "win": "win32",
+}
 
 # setup chromedriver before any execution
-def setupCD(url):
+def setupCD(os_type):
+
+    LATEST_RELEASE = request.urlopen(stable_release_version_url).read().decode('utf-8')
+
+    print(LATEST_RELEASE)
+
+    url = f'https://chromedriver.storage.googleapis.com/{LATEST_RELEASE}/chromedriver_{distribution[os_type]}.zip'
+
+    print(url)
 
     # get filename from the URL
     url_tokens = url.split("/")
@@ -42,8 +56,6 @@ def setupCD(url):
         zip22.extractall(local_binary_directory + '/chromedriver')
         zip22.close()
         remove(local_binary_directory + fileName)
-        chmod(local_binary_directory + '/chromedriver/', 0o744)
+        chmod(local_binary_directory + '/chromedriver/chromedriver', 0o744)
         print("chromedriver installed.")
 
-
-setupCD(url)

@@ -160,6 +160,7 @@ class LinkedinBot:
             print(ns, "window might have been closed by usre Rahul Bali.")
 
 
-lo = LinkedinBot()
-lo.click_job()
-lo.go_exit()
+
+if __name__ == '__main__':
+    lo = LinkedinBot()
+    lo.click_job()

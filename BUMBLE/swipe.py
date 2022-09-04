@@ -55,5 +55,6 @@ class BumbleBot:
             count += 1
 
 
-b = BumbleBot()
-b.right_swipe()
+if __name__ == '__main__':
+    b = BumbleBot()
+    b.right_swipe()
