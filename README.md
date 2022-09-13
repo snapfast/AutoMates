@@ -18,7 +18,7 @@ This program is only supported on Python 3.10 and above.
 
 ## Usage screenshots
 
-![Usage](./zz/Screenshot_from_2022-09-13_22-34-19.png)
+![Usage](./zz/Screenshot_from_2022-09-13_22-34-19_1.png)
 
 ## Usage (deprecated)
 
