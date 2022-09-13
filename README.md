@@ -13,7 +13,7 @@ Run the command to install the only package needed `selenium`.
 4. `python run.py`
 5. Just use the menu to do things.
 
-Note: Use pip3 or pip, python3 or python, whichever works for you. 
+Note: Use `pip3 or pip`, `python3 or python` whichever works for you.   
 This program is only supported on Python 3.10 and above.
 
 ## Usage screenshots
