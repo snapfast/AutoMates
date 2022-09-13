@@ -24,7 +24,6 @@ if FIRST_SETUP == 1:
 	# letting the user to login
 	print("Chrome window will open to let you login to the accounts. \nYou have two minutes to login to your account :)")
 	first_setup.loginWindow()
-	first_setup.go_exit()
 
 # ask the Service to automate
 

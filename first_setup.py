@@ -42,26 +42,26 @@ def setupCD(os_type):
     fileName = url_tokens[-1]
 
     # if the Binary folder does not exists, Create
-    if not path.isdir(local_binary_directory):
-        mkdir(local_binary_directory)
+    if not path.isdir(local_bin_directory):
+        mkdir(local_bin_directory)
 
     # check if chromedriver exist, if not download and extract
-    if path.isdir(local_binary_directory + '/chromedriver'):
+    if path.isdir(local_bin_directory + '/chromedriver'):
         print('chromedriver correctly installed')
         return 0
     else:
         try:
-            request.urlretrieve(url, local_binary_directory + fileName)
+            request.urlretrieve(url, local_bin_directory + fileName)
             print('downloading the chromedriver...')
             sleep(30)
         except FileExistsError as err:
             print('chromedriver already downloaded', err)
-        zip22 = ZipFile(local_binary_directory + fileName, 'r')
+        zip22 = ZipFile(local_bin_directory + fileName, 'r')
         zip22.namelist()
-        zip22.extractall(local_binary_directory + '/chromedriver')
+        zip22.extractall(local_bin_directory + '/chromedriver')
         zip22.close()
-        remove(local_binary_directory + fileName)
-        chmod(local_binary_directory + '/chromedriver/chromedriver', 0o744)
+        remove(local_bin_directory + fileName)
+        chmod(local_bin_directory + '/chromedriver/chromedriver', 0o744)
         print("chromedriver installed.")
 
 
@@ -76,20 +76,17 @@ def loginWindow():
 
     service = Service(local_bin_directory + '/chromedriver/chromedriver')
 
-    self.driver = webdriver.Chrome(service=service, options=chrome_options)
-    self.driver.get("https://linkedin.com/")
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.get("https://linkedin.com/")
       
     # second tab
-    self.driver.execute_script("window.open('about:blank', 'secondtab');")
-    self.driver.switch_to.window("secondtab")
+    driver.execute_script("window.open('about:blank', 'secondtab');")
+    driver.switch_to.window("secondtab")
       
-    # In the second tab, it opens geeksforgeeks
-    self.driver.get('https://naukri.com/')
+    # In the second tab
+    driver.get('https://naukri.com/')
     sleep(120)
-
-
-def go_exit(self):
-    self.driver.close()
-    self.driver.quit()
+    driver.close()
+    driver.quit()
 
 
