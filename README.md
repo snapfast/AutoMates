@@ -8,8 +8,8 @@ Run the command to install the only package needed `selenium`.
 *Optional: Create separate python environment.*
 
 1. `pip3 install selenium`
-2. `python first_setup.py`
-3. See Usage.
+2. `python run.py`
+3. Just use the menu to do things.
 
 ## Usage
 

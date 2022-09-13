@@ -2,7 +2,7 @@
 
 this file uses local storage folder for browser data
 
-Author: github.com/rahbal
+Author: github.com/snapfast
 
 this file applies to Easy Job Recommendations on the Jobs page of Linkedin.
 
@@ -59,11 +59,11 @@ class LinkedinBot:
         html.send_keys(Keys.END)
         sleep(10)
         try:
-            easyJobs = self.driver.find_elements(by=By.XPATH, value="//*[text()='Easy Apply']/ancestor::*[@class='list-style-none clear-both mt2']")
+            jobs = self.driver.find_elements(by=By.CLASS_NAME, value="jobs-job-board-list__item")
         except NoSuchElementException as xx:
             print(xx, "is not there..")
-        print(len(easyJobs))
-        # jobs = self.driver.find_elements_by_xpath("//li[contains(text(), 'Easy Apply')]")
+        print(len(jobs))
+        easyJobs = jobs
         total_jobs = len(easyJobs)
         original_window = self.driver.current_window_handle
         # cl = random.randint(0, len(easyJobs)-1)

@@ -57,8 +57,7 @@ class NaukriBot:
         # jobs = self.driver.find_elements_by_xpath("//li[contains(text(), 'Easy Apply')]")
         total_jobs = len(listOfJobs)
         original_window = self.driver.current_window_handle
-        # cl = random.randint(0, len(easyJobs)-1)
-        # cl = total_jobs//2
+        # start at first job
         cl = 0
         assert len(self.driver.window_handles) == 1
         print('clicking the {} job'.format(cl))
@@ -67,29 +66,13 @@ class NaukriBot:
                 job_name_element = listOfJobs[cl]
                 job_name_element.click()
                 sleep(2)
-                # jname = job_name_element.text
-                # job_url = job_name_element.get_attribute('href')
-
-                # print(jname, job_url)
-
-                # cname = listOfJobs[cl].find_element(
-                #     by=By.CLASS_NAME, value='app-aware-link').text
-
-                # lname = easyJobs[cl].find_element(
-                #     by=By.CLASS_NAME, value="job-card-container__metadata-item").text
-
-                # with open(r'filename.txt', 'a') as f:
-                #     print(jname, file=f)
-                # self.driver.execute_script(
-                #     "arguments[0].scrollIntoView(true);", easyJobs[cl])
-                action = ActionChains(self.driver)
-                # action.move_to_element(job_name_element).key_down(Keys.CONTROL).click(job_name_element).key_up(Keys.CONTROL).perform()
-                # action.key_down(Keys.CONTROL).send_keys("t").perform()
-                # self.driver.switch_to.new_window('tab')
-                # .get(easyJobs[cl].get_attribute('href'))
+                # switch window
                 self.driver._switch_to.window(self.driver.window_handles[1])
-                applyContainer = self.driver.find_element(by=By.CLASS_NAME,value='apply-button-container')
-                applyContainer.find_element(by=By.CLASS_NAME,value='apply-button').click()
+                try:
+                    applyContainer = self.driver.find_element(by=By.CLASS_NAME,value='apply-button-container')
+                    applyContainer.find_element(by=By.CLASS_NAME,value='apply-button').click()
+                except NoSuchElementException as e:
+                    print("no apply button found.")
                 sleep(2)
                 self.driver.close()
                 self.driver._switch_to.window(original_window)
@@ -97,7 +80,7 @@ class NaukriBot:
             except ElementNotInteractableException:
                 print('scroll a bit please, cannot see the element yet')
                 sleep(2)
-        sleep(2)
+        sleep(30)
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-
+import first_setup
 from BUMBLE import swipe
 from LINKEDIN import recommended_jobs as l_rec
 from LINKEDIN import search_jobs
@@ -6,6 +6,11 @@ from NAUKRI import recommended_jobs as n_rec
 
 # first time setup
 # ask the operating system
+
+print("First Setup ?\n 1. Yes\n 2. No")
+FIRST_SETUP = int(input())
+if FIRST_SETUP == 1:
+	first_setup.setupCD('linux')
 
 
 # ask the Service to automate
@@ -32,10 +37,12 @@ Choose below ?
 	""")
 	LINKEDIN_SERVICE = int(input())
 	if LINKEDIN_SERVICE == 1:
+		print("Applying Linkedin Recommended..")
 		lb = l_rec.LinkedinBot()
 		lb.click_job()
 	elif LINKEDIN_SERVICE == 2:
-		position = input("Search posts by name")
+		print("Searching on Linkedin.")
+		position = input("Search by post name")
 		location = input("Enter job location")
 		l = search_jobs.LinkedinBot()
 		l.do_search(position, location)
