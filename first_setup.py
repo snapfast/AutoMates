@@ -1,11 +1,20 @@
-from os import *
+
+# this file uses local storage folder for browser data
+# login to the account before executing the actual script
+from os import path
 from urllib import request
 from zipfile import ZipFile
 from time import sleep
 
 
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+
 home_directory = path.expanduser("~")
-local_binary_directory = home_directory + '/bin/'
+local_bin_directory = home_directory + '/bin/'
 
 stable_release_version_url = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
 
@@ -54,4 +63,33 @@ def setupCD(os_type):
         remove(local_binary_directory + fileName)
         chmod(local_binary_directory + '/chromedriver/chromedriver', 0o744)
         print("chromedriver installed.")
+
+
+def loginWindow():
+    print(local_bin_directory)
+    chrome_options = Options()
+    chrome_options.add_argument(f"--user-data-dir={local_bin_directory}\
+        /chrome-data")
+    chrome_options.add_experimental_option("useAutomationExtension", False)
+    # chrome_options.add_experimental_option('excludeSwitches',
+    # ["enable-automation"])
+
+    service = Service(local_bin_directory + '/chromedriver/chromedriver')
+
+    self.driver = webdriver.Chrome(service=service, options=chrome_options)
+    self.driver.get("https://linkedin.com/")
+      
+    # second tab
+    self.driver.execute_script("window.open('about:blank', 'secondtab');")
+    self.driver.switch_to.window("secondtab")
+      
+    # In the second tab, it opens geeksforgeeks
+    self.driver.get('https://naukri.com/')
+    sleep(120)
+
+
+def go_exit(self):
+    self.driver.close()
+    self.driver.quit()
+
 
