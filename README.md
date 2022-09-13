@@ -8,10 +8,19 @@ Run the command to install the only package needed `selenium`.
 *Optional: Create separate python environment.*
 
 1. `pip3 install selenium`
-2. `python run.py`
-3. Just use the menu to do things.
+2. `git clone https://github.com/snapfast/AutoMates`
+3. `cd Automates`
+4. `python run.py`
+5. Just use the menu to do things.
 
-## Usage
+Note: Use pip3 or pip, python3 or python, whichever works for you. 
+This program is only supported on Python 3.10 and above.
+
+## Usage screenshots
+
+![Usage](./zz/Screenshot_from_2022-09-13_22-34-19.png)
+
+## Usage (deprecated)
 
 To run for specific website, choose from below commands.
 

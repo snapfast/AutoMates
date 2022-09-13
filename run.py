@@ -58,9 +58,7 @@ Choose below ?
 		l.click_easy_jobs()
 elif SERVICE == 3:
 	print("Naukri Selected")
-	print("""
-	Applying Naukri Recommended Jobs.
-	""")
+	print("Applying Naukri Recommended Jobs.")
 	n = n_rec.NaukriBot()
 	n.click_job()
 elif SERVICE == 4:
