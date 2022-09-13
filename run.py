@@ -5,12 +5,21 @@ from LINKEDIN import search_jobs
 from NAUKRI import recommended_jobs as n_rec
 
 # first time setup
-# ask the operating system
 
 print("First Setup ?\n 1. Yes\n 2. No")
 FIRST_SETUP = int(input())
 if FIRST_SETUP == 1:
-	first_setup.setupCD('linux')
+	# ask the operating system
+	print("\nThis Computer OS ?\n 1. Linux\n 2. Windows\n 3. MacOS\n 4. MacOS M1")
+	OS = int(input())
+	if OS == 1:
+		first_setup.setupCD('linux')
+	elif OS == 2:
+		first_setup.setupCD('win')
+	elif OS == 3:
+		first_setup.setupCD('mac')
+	elif OS == 4:
+		first_setup.setupCD('mac_m1')
 
 
 # ask the Service to automate

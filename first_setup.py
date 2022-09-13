@@ -24,17 +24,13 @@ def setupCD(os_type):
 
     LATEST_RELEASE = request.urlopen(stable_release_version_url).read().decode('utf-8')
 
-    print(LATEST_RELEASE)
+    print('Chrome version installed: ', LATEST_RELEASE)
 
     url = f'https://chromedriver.storage.googleapis.com/{LATEST_RELEASE}/chromedriver_{distribution[os_type]}.zip'
-
-    print(url)
 
     # get filename from the URL
     url_tokens = url.split("/")
     fileName = url_tokens[-1]
-
-    print(local_binary_directory)
 
     # if the Binary folder does not exists, Create
     if not path.isdir(local_binary_directory):
