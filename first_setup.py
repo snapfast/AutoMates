@@ -1,7 +1,7 @@
 
 # this file uses local storage folder for browser data
 # login to the account before executing the actual script
-from os import path
+from os import path, mkdir, remove, chmod
 from urllib import request
 from zipfile import ZipFile
 from time import sleep
@@ -61,15 +61,15 @@ def setupCD(os_type):
         zip22.extractall(local_bin_directory + '/chromedriver')
         zip22.close()
         remove(local_bin_directory + fileName)
-        chmod(local_bin_directory + '/chromedriver/chromedriver', 0o744)
+        if os_type != 'win': #do not change the permission if it is windows
+            chmod(local_bin_directory + '/chromedriver/chromedriver', 0o744)
         print("chromedriver installed.")
 
 
 def loginWindow():
     print(local_bin_directory)
     chrome_options = Options()
-    chrome_options.add_argument(f"--user-data-dir={local_bin_directory}\
-        /chrome-data")
+    chrome_options.add_argument(f"--user-data-dir={local_bin_directory}/chrome-data")
     chrome_options.add_experimental_option("useAutomationExtension", False)
     # chrome_options.add_experimental_option('excludeSwitches',
     # ["enable-automation"])
