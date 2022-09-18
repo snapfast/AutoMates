@@ -24,6 +24,8 @@ if FIRST_SETUP == 1:
 	# letting the user to login
 	print("Chrome window will open to let you login to the accounts. \nYou have two minutes to login to your account :)")
 	first_setup.loginWindow()
+else:
+	print("skipping setup...")
 
 # ask the Service to automate
 

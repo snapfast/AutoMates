@@ -74,6 +74,13 @@ class LinkedinBot:
         yehut = True
         while cl < total_jobs:
             try:
+                print("something there ??")
+                try:
+                    print(easyJobs[cl].find_element(by=By.CLASS_NAME, value="job-card-container__apply-method"))
+                except:
+                    print("------------------------------------ Normal job skipping the click")
+                    cl += 1
+                    continue
                 job_name_element = easyJobs[cl].find_element(
                     by=By.CLASS_NAME, value='job-card-list__title') #job-card-container__link
                 jname = job_name_element.text
