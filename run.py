@@ -1,4 +1,4 @@
-import first_setup
+import setup
 from BUMBLE import swipe
 from LINKEDIN import recommended_jobs as l_rec
 from LINKEDIN import search_jobs
@@ -13,17 +13,17 @@ if FIRST_SETUP == 1:
 	print("\nThis Computer OS ?\n 1. Linux\n 2. Windows\n 3. MacOS\n 4. MacOS M1")
 	OS = int(input())
 	if OS == 1:
-		first_setup.setupCD('linux')
+		setup.setupCD('linux')
 	elif OS == 2:
-		first_setup.setupCD('win')
+		setup.setupCD('win')
 	elif OS == 3:
-		first_setup.setupCD('mac')
+		setup.setupCD('mac')
 	elif OS == 4:
-		first_setup.setupCD('mac_m1')
+		setup.setupCD('mac_m1')
 
 	# letting the user to login
 	print("Chrome window will open to let you login to the accounts. \nYou have two minutes to login to your account :)")
-	first_setup.loginWindow()
+	setup.loginWindow()
 else:
 	print("skipping setup...")
 

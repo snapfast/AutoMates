@@ -141,7 +141,7 @@ class LinkedinBot:
                     value="//label[@for='follow-company-checkbox']")
                 print("clicked uncheck")
             except Exception:
-                print("no checkbox")
+                pass
             try:
                 self.driver.find_element(by=By.XPATH,
                     value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
@@ -150,7 +150,7 @@ class LinkedinBot:
                     # if self.driver.find_element_by_class_name("t-14 fb-form-element-label__title--is-required").text == "City*":
                     #     self.driver.find_element_by_class_name("artdeco-typeahead__input ").send_keys("Ambala, Haryana, India")
                     input(
-                        "please enter appropriate data on web page, then press any key here...")
+                        "Please enter appropriate data on web page\n Once entered, press enter/return...")
                     cc = 5
                 cc -= 1
                 sleep(2)
