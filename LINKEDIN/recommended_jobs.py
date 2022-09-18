@@ -74,7 +74,6 @@ class LinkedinBot:
         yehut = True
         while cl < total_jobs:
             try:
-                print("something there ??")
                 try:
                     print(easyJobs[cl].find_element(by=By.CLASS_NAME, value="job-card-container__apply-method"))
                 except:
