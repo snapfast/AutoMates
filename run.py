@@ -56,8 +56,8 @@ Choose below ?
 		lb.click_job()
 	elif LINKEDIN_SERVICE == 2:
 		print("Searching on Linkedin.")
-		position = input("Search by post name")
-		location = input("Enter job location")
+		position = input("\nEnter post name\n")
+		location = input("\nEnter job location\n")
 		l = search_jobs.LinkedinBot()
 		l.do_search(position, location)
 		l.click_easy_jobs()

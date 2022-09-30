@@ -18,6 +18,7 @@ local_bin_directory = home_directory + '/bin/'
 
 
 class LinkedinBot():
+
     def __init__(self):
         # term = self.term
         # country = self.country
@@ -37,25 +38,28 @@ class LinkedinBot():
         self.driver.quit()
 
     def do_search(self, position, location):
-        box = self.driver.find_elements(
-            by=By.CLASS_NAME, value="jobs-search-box__text-input")
+        box = self.driver.find_elements(by=By.CLASS_NAME,
+                                        value="jobs-search-box__text-input")
         box[0].click()
         sleep(1)
         box[0].send_keys(position)  # job title
         box[3].send_keys(location + "\n")  # location
-
-    def click_easy_jobs(self):
         sleep(5)
 
         # turn on filter for the Easy Apply Jobs, all jobs will be easy ones
-        easy_apply_filter_parent = self.driver.find_element(
-            by=By.CLASS_NAME, value='search-reusables__filter-binary-toggle')
+        try:
+            easy_apply_filter_parent = self.driver.find_element(
+                by=By.CLASS_NAME,
+                value='search-reusables__filter-binary-toggle')
+            easy_apply_filter_parent.find_element(by=By.TAG_NAME,
+                                                  value='button').click()
+            print(easy_apply_filter_parent.text)
+        except:
+            print("not able to find the easy button")
 
-        easy_apply_filter_parent.find_element(
-            by=By.TAG_NAME, value='button').click()
-
-        print(easy_apply_filter_parent.text)
         sleep(10)
+
+    def click_easy_jobs(self):
 
         # left panel jobs
         try:
@@ -76,11 +80,9 @@ class LinkedinBot():
             sleep(2)
             try:
                 job_name_element = left_panel_jobs[j].find_element(
-                    by=By.CLASS_NAME,
-                    value='job-card-list__title')
+                    by=By.CLASS_NAME, value='job-card-list__title')
                 company_name_element = left_panel_jobs[j].find_element(
-                    by=By.CLASS_NAME,
-                    value='job-card-container__company-name')
+                    by=By.CLASS_NAME, value='job-card-container__company-name')
                 location_element = left_panel_jobs[j].find_element(
                     by=By.CLASS_NAME,
                     value='job-card-container__metadata-wrapper')
@@ -110,8 +112,11 @@ class LinkedinBot():
         gerat = True
         while gerat:
             try:
-                self.driver.find_element(by=By.XPATH,
-                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']").click()
+                self.driver.find_element(
+                    by=By.XPATH,
+                    value=
+                    "//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']"
+                ).click()
                 print('Clicked the Easy Button')
                 gerat = False
             except NoSuchElementException:
@@ -135,8 +140,11 @@ class LinkedinBot():
             # except Exception as e:
             #     print(e, "no checkbox")
             try:
-                self.driver.find_element(by=By.XPATH,
-                    value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
+                self.driver.find_element(
+                    by=By.XPATH,
+                    value=
+                    "//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']"
+                ).click()
                 print('Next / Submit', cc)
                 if cc == 0:
                     input("Please enter appropriate data on web page")
@@ -155,7 +163,6 @@ class LinkedinBot():
             print(ns, "window might have been closed by user.")
 
 
-
 if __name__ == '__main__':
     position = argv[1]
     location = argv[2]
@@ -163,4 +170,3 @@ if __name__ == '__main__':
     lb = LinkedinBot()
     lb.do_search(position, location)
     lb.click_easy_jobs()
-

@@ -1,7 +1,8 @@
 
 # this file uses local storage folder for browser data
 # login to the account before executing the actual script
-from os import path, mkdir, remove, chmod
+from os import path, mkdir, remove, chmod, removedirs
+import sys
 from urllib import request
 from zipfile import ZipFile
 from time import sleep
@@ -9,6 +10,7 @@ from time import sleep
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import SessionNotCreatedException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -75,8 +77,15 @@ def loginWindow():
     # ["enable-automation"])
 
     service = Service(local_bin_directory + '/chromedriver/chromedriver')
+    driver = None
 
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    try:
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+    except SessionNotCreatedException:
+        print("Update your chrome to latest version, then run again.")
+        # raise SessionNotCreatedException
+        sys.exit()
+        # removedirs(local_bin_directory, )
     driver.get("https://linkedin.com/")
       
     # second tab
