@@ -21,7 +21,7 @@ class LinkedinBot():
 
     def __init__(self):
         # term = self.term
-        # country = self.country
+        self.page_number = 1
         chrome_options = Options()
         chrome_options.add_argument(
             f"--user-data-dir={local_bin_directory}/chrome-data")
@@ -57,55 +57,81 @@ class LinkedinBot():
         except:
             print("not able to find the easy button")
 
-        sleep(10)
+        sleep(5)
+
+        self.change_page()
+
+        sleep(5)
+
+    def change_page(self):
+        # get the current page number, self.page_number
+        # then find that page number element, then click the element
+        self.page_number += 1
+        try:
+            next_page_list_item = self.driver.find_element(
+                by=By.XPATH,
+                value=
+                f"//li[@data-test-pagination-page-btn='{self.page_number}']")
+            print(next_page_list_item)
+            print(next_page_list_item.get_attribute("class"))
+            next_page_button = next_page_list_item.find_element(by=By.TAG_NAME,
+                                                                value='button')
+            print(next_page_button)
+            print(next_page_button.get_attribute('aria-label'))
+            next_page_button.click()
+        except NoSuchElementException as NoSuch:
+            print(NoSuch, "\n cool enough")
 
     def click_easy_jobs(self):
 
-        # left panel jobs
-        try:
-            left_panel_jobs = self.driver.find_elements(
-                by=By.CLASS_NAME, value="jobs-search-results__list-item")
-        except NoSuchElementException as NoSuch:
-            print(NoSuch, "\n cool")
-
-        total_jobs = len(left_panel_jobs)
-        print(total_jobs, left_panel_jobs)
-
-        # storing the main tab context
-        original_window = self.driver.current_window_handle
-        j = 0
-
-        # looping on each left panel job one by one.
-        while j < total_jobs:
-            sleep(2)
+        while 1:
+            # left panel jobs
             try:
-                job_name_element = left_panel_jobs[j].find_element(
-                    by=By.CLASS_NAME, value='job-card-list__title')
-                company_name_element = left_panel_jobs[j].find_element(
-                    by=By.CLASS_NAME, value='job-card-container__company-name')
-                location_element = left_panel_jobs[j].find_element(
-                    by=By.CLASS_NAME,
-                    value='job-card-container__metadata-wrapper')
-                jname = job_name_element.text
-                cname = company_name_element.text
-                lname = location_element.text
-                job_url = job_name_element.get_attribute('href')
-                print(jname + "--" + cname + "--" + lname)
+                left_panel_jobs = self.driver.find_elements(
+                    by=By.CLASS_NAME, value="jobs-search-results__list-item")
+            except NoSuchElementException as NoSuch:
+                print(NoSuch, "\n cool")
 
-                with open(r'filename.txt', 'a') as f:
-                    print(jname, file=f)
-                self.driver.execute_script(
-                    "arguments[0].scrollIntoView(true);", left_panel_jobs[j])
-                self.driver.switch_to.new_window('tab')
-                self.driver._switch_to.window(self.driver.window_handles[1])
-                self.driver.get(job_url)
+            total_jobs = len(left_panel_jobs)
+            print(total_jobs, left_panel_jobs)
+
+            # storing the main tab context
+            original_window = self.driver.current_window_handle
+            j = 0
+
+            # looping on each left panel job one by one.
+            while j < total_jobs:
                 sleep(2)
-                self.apply_job()
-                self.driver._switch_to.window(original_window)
-                j += 1
-            except ElementNotInteractableException:
-                print('scroll a bit please, cannot see the element yet')
-                sleep(2)
+                try:
+                    job_name_element = left_panel_jobs[j].find_element(
+                        by=By.CLASS_NAME, value='job-card-list__title')
+                    company_name_element = left_panel_jobs[j].find_element(
+                        by=By.CLASS_NAME, value='job-card-container__company-name')
+                    location_element = left_panel_jobs[j].find_element(
+                        by=By.CLASS_NAME,
+                        value='job-card-container__metadata-wrapper')
+                    jname = job_name_element.text
+                    cname = company_name_element.text
+                    lname = location_element.text
+                    job_url = job_name_element.get_attribute('href')
+                    print(jname + "--" + cname + "--" + lname)
+
+                    with open(r'filename.txt', 'a') as f:
+                        print(jname, file=f)
+                    self.driver.execute_script(
+                        "arguments[0].scrollIntoView(true);", left_panel_jobs[j])
+                    self.driver.switch_to.new_window('tab')
+                    self.driver._switch_to.window(self.driver.window_handles[1])
+                    self.driver.get(job_url)
+                    sleep(2)
+                    self.apply_job()
+                    self.driver._switch_to.window(original_window)
+                    j += 1
+                except ElementNotInteractableException:
+                    print('scroll a bit please, cannot see the element yet')
+                    sleep(2)
+            self.change_page()
+
 
     def apply_job(self):
         # Section to click the Easy Apply Button on job page
@@ -170,3 +196,4 @@ if __name__ == '__main__':
     lb = LinkedinBot()
     lb.do_search(position, location)
     lb.click_easy_jobs()
+    lb.change_page()
