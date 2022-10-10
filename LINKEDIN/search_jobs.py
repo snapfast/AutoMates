@@ -57,11 +57,7 @@ class LinkedinBot():
         except:
             print("not able to find the easy button")
 
-        sleep(5)
-
-        self.change_page()
-
-        sleep(5)
+        sleep(10)
 
     def change_page(self):
         # get the current page number, self.page_number
