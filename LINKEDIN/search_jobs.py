@@ -57,7 +57,7 @@ class LinkedinBot():
         except:
             print("not able to find the easy button")
 
-        sleep(5)
+        sleep(15)
 
         self.change_page()
 

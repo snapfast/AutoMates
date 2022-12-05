@@ -40,7 +40,7 @@ class BumbleBot:
         sleep(2)
         count = 1
         while 1:
-            sleep(random.randint(6, 10))
+            sleep(random.randint(30, 40))
             try:
                 like = self.driver.find_element(
                     by=By.CLASS_NAME, value="encounters-action--like")
