@@ -57,10 +57,6 @@ class LinkedinBot():
         except:
             print("not able to find the easy button")
 
-        sleep(15)
-
-        self.change_page()
-
         sleep(5)
 
     def change_page(self):
@@ -70,8 +66,7 @@ class LinkedinBot():
         try:
             next_page_list_item = self.driver.find_element(
                 by=By.XPATH,
-                value=
-                f"//li[@data-test-pagination-page-btn='{self.page_number}']")
+                value=f"//li[@data-test-pagination-page-btn='{self.page_number}']")
             print(next_page_list_item)
             print(next_page_list_item.get_attribute("class"))
             next_page_button = next_page_list_item.find_element(by=By.TAG_NAME,
@@ -121,7 +116,8 @@ class LinkedinBot():
                     self.driver.execute_script(
                         "arguments[0].scrollIntoView(true);", left_panel_jobs[j])
                     self.driver.switch_to.new_window('tab')
-                    self.driver._switch_to.window(self.driver.window_handles[1])
+                    self.driver._switch_to.window(
+                        self.driver.window_handles[1])
                     self.driver.get(job_url)
                     sleep(2)
                     self.apply_job()
@@ -132,7 +128,6 @@ class LinkedinBot():
                     sleep(2)
             self.change_page()
 
-
     def apply_job(self):
         # Section to click the Easy Apply Button on job page
         gerat = True
@@ -140,8 +135,7 @@ class LinkedinBot():
             try:
                 self.driver.find_element(
                     by=By.XPATH,
-                    value=
-                    "//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']"
+                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']"
                 ).click()
                 print('Clicked the Easy Button')
                 gerat = False
@@ -165,11 +159,19 @@ class LinkedinBot():
             #     print("clicked checkbox")
             # except Exception as e:
             #     print(e, "no checkbox")
+
+            # find the element for selecting resume
+            try:
+                resume_button = self.driver.find_element(
+                    by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--1 artdeco-button--tertiary ember-view']")
+                resume_button.click()
+                print("first resume button clicked")
+            except:
+                pass
             try:
                 self.driver.find_element(
                     by=By.XPATH,
-                    value=
-                    "//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']"
+                    value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']"
                 ).click()
                 print('Next / Submit', cc)
                 if cc == 0:
