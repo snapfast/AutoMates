@@ -21,7 +21,7 @@ class LinkedinBot():
 
     def __init__(self):
         # term = self.term
-        self.page_number = 1
+        self.page_number = 5
         chrome_options = Options()
         chrome_options.add_argument(
             f"--user-data-dir={local_bin_directory}/chrome-data")
@@ -37,7 +37,7 @@ class LinkedinBot():
         self.driver.close()
         self.driver.quit()
 
-    def do_search(self, position, location):
+    def do_search(self, position = "software engineer", location = "germany"):
         box = self.driver.find_elements(by=By.CLASS_NAME,
                                         value="jobs-search-box__text-input")
         box[0].click()
@@ -57,6 +57,8 @@ class LinkedinBot():
         except:
             print("not able to find the easy button")
 
+        sleep(5)
+        self.change_page()
         sleep(5)
 
     def change_page(self):
@@ -100,16 +102,15 @@ class LinkedinBot():
                 try:
                     job_name_element = left_panel_jobs[j].find_element(
                         by=By.CLASS_NAME, value='job-card-list__title')
-                    company_name_element = left_panel_jobs[j].find_element(
-                        by=By.CLASS_NAME, value='job-card-container__company-name')
-                    location_element = left_panel_jobs[j].find_element(
-                        by=By.CLASS_NAME,
-                        value='job-card-container__metadata-wrapper')
+                    # company_name_element = left_panel_jobs[j].find_element(
+                    #     by=By.CLASS_NAME, value='job-card-container__company-name')
+                    # location_element = left_panel_jobs[j].find_element(
+                    #     by=By.CLASS_NAME,
+                    #     value='job-card-container__metadata-wrapper')
                     jname = job_name_element.text
-                    cname = company_name_element.text
-                    lname = location_element.text
+                    # cname = company_name_element.text
+                    # lname = location_element.text
                     job_url = job_name_element.get_attribute('href')
-                    print(jname + "--" + cname + "--" + lname)
 
                     with open(r'filename.txt', 'a') as f:
                         print(jname, file=f)
@@ -178,7 +179,7 @@ class LinkedinBot():
                     input("Please enter appropriate data on web page")
                     cc = 5
                 cc -= 1
-                sleep(2)
+                sleep(3)
             except NoSuchElementException:
                 gerat = False
             except NoSuchWindowException as win:
