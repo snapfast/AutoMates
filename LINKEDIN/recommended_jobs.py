@@ -133,6 +133,16 @@ class LinkedinBot:
         gerat = True
         cc = 5
         while gerat:
+            # click the resume selector button
+            try:
+                resume_button = self.driver.find_element(
+                    by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--1 artdeco-button--tertiary ember-view']")
+                if resume_button.text == "Choose":
+                    resume_button.click()
+                    print("first resume button clicked")
+            except:
+                pass
+            """
             try:
                 popup = self.driver.find_element(
                     by=By.CLASS_NAME, value="artdeco-modal--layer-default")
@@ -142,6 +152,7 @@ class LinkedinBot:
                 print("clicked uncheck")
             except Exception:
                 pass
+            """
             try:
                 self.driver.find_element(by=By.XPATH,
                     value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']").click()
