@@ -165,8 +165,9 @@ class LinkedinBot():
             try:
                 resume_button = self.driver.find_element(
                     by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--1 artdeco-button--tertiary ember-view']")
-                resume_button.click()
-                print("first resume button clicked")
+                if resume_button.text == "Choose":
+                    resume_button.click()
+                    print("resume button clicked")
             except:
                 pass
             try:

@@ -139,7 +139,7 @@ class LinkedinBot:
                     by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--1 artdeco-button--tertiary ember-view']")
                 if resume_button.text == "Choose":
                     resume_button.click()
-                    print("first resume button clicked")
+                    print("resume button clicked")
             except:
                 pass
             """
