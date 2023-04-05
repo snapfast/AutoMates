@@ -1,12 +1,14 @@
 import setup
+from time import sleep
 from BUMBLE import swipe
 from LINKEDIN import recommended_jobs as l_rec
 from LINKEDIN import search_jobs
+from LINKEDIN import connect_people
 from NAUKRI import recommended_jobs as n_rec
 
 # first time setup
 
-print("First Setup ?\n 1. Yes\n 2. No")
+print("1. Setup First Time\n2. Reset the Previous Setup (chrome has received an update)\n3. Continue with Automation")
 FIRST_SETUP = int(input())
 if FIRST_SETUP == 1:
 	# ask the operating system
@@ -23,7 +25,12 @@ if FIRST_SETUP == 1:
 
 	# letting the user to login
 	print("Chrome window will open to let you login to the accounts. \nYou have two minutes to login to your account :)")
+	sleep(10)
 	setup.loginWindow()
+elif FIRST_SETUP == 2:
+	setup.reset()
+	print("Reset Complete, Run again and Setup for use latest version of chrome.")
+	exit()
 else:
 	print("skipping setup...")
 
@@ -48,6 +55,7 @@ elif SERVICE == 2:
 Choose below ?
 1. Apply Linkedin Recommended Jobs.
 2. Search based on Position and Location.
+3. Connect to People of the Company (https://www.linkedin.com/company/paypal/people/)
 	""")
 	LINKEDIN_SERVICE = int(input())
 	if LINKEDIN_SERVICE == 1:
@@ -61,6 +69,11 @@ Choose below ?
 		l = search_jobs.LinkedinBot()
 		l.do_search(position, location)
 		l.click_easy_jobs()
+	elif LINKEDIN_SERVICE == 3:
+		print("Searching on Linkedin.")
+		co_name = input("\n Enter the company name in lowercase\n")
+		cp = connect_people.LinkedinBot(co_name)
+		cp.connect()
 elif SERVICE == 3:
 	print("Naukri Selected")
 	print("Applying Naukri Recommended Jobs.")

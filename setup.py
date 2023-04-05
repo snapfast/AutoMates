@@ -82,7 +82,7 @@ def loginWindow():
     try:
         driver = webdriver.Chrome(service=service, options=chrome_options)
     except SessionNotCreatedException:
-        print("Update your chrome to latest version, then run again.")
+        print("Update your chrome to latest version, then run again. Also, try to Reset the Setup.")
         # raise SessionNotCreatedException
         sys.exit()
         # removedirs(local_bin_directory, )
@@ -98,4 +98,11 @@ def loginWindow():
     driver.close()
     driver.quit()
 
+
+def reset():
+    try:
+        remove(local_bin_directory + "chromedriver/chromedriver.exe")
+        removedirs(local_bin_directory + "chromedriver")
+    except:
+        print("reset not required")
 
