@@ -59,12 +59,11 @@ class LinkedinBot:
         html.send_keys(Keys.END)
         sleep(10)
         try:
-            jobs = self.driver.find_elements(by=By.CLASS_NAME, value="jobs-job-board-list__item")
+            total_jobs = self.driver.find_elements(by=By.CLASS_NAME, value="jobs-job-board-list__item")
         except NoSuchElementException as xx:
             print(xx, "is not there..")
-        print(len(jobs))
-        easyJobs = jobs
-        total_jobs = len(easyJobs)
+        print(len(total_jobs))
+        num_total_jobs = len(total_jobs)
         original_window = self.driver.current_window_handle
         # cl = random.randint(0, len(easyJobs)-1)
         # cl = total_jobs//2
@@ -72,7 +71,7 @@ class LinkedinBot:
         assert len(self.driver.window_handles) == 1
         print('clicking the {} job'.format(cl))
         yehut = True
-        while cl < total_jobs:
+        while cl < num_total_jobs:
             try:
                 try:
                     print(easyJobs[cl].find_element(by=By.CLASS_NAME, value="job-card-container__apply-method"))

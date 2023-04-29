@@ -11,6 +11,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 from time import sleep
+from random import randint
 
 home_directory = path.expanduser("~")
 local_bin_directory = home_directory + '/bin/'
@@ -53,7 +54,7 @@ class LinkedinBot():
                 print(NoSuch, "\n cool")
 
             total_jobs = len(visible_connect_buttons)
-            print(total_jobs)
+            print(total_jobs, j)
 
             try:
                 self.driver.execute_script(
@@ -62,12 +63,11 @@ class LinkedinBot():
 
                 print(job_name_element)
 
-                sleep(3)
+                sleep(randint(3, 8))
 
                 send_button = self.driver.find_element(
                     by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view ml1']")
                 send_button.click()
-                j += 1
             except ElementNotInteractableException:
                 print('scroll a bit please, cannot see the element yet')
                 sleep(2)

@@ -4,6 +4,7 @@ from BUMBLE import swipe
 from LINKEDIN import recommended_jobs as l_rec
 from LINKEDIN import search_jobs
 from LINKEDIN import connect_people
+from LINKEDIN import profile_stalker
 from NAUKRI import recommended_jobs as n_rec
 
 # first time setup
@@ -56,6 +57,7 @@ Choose below ?
 1. Apply Linkedin Recommended Jobs.
 2. Search based on Position and Location.
 3. Connect to People of the Company (https://www.linkedin.com/company/paypal/people/)
+4. Stalk Profiles :P
 	""")
 	LINKEDIN_SERVICE = int(input())
 	if LINKEDIN_SERVICE == 1:
@@ -70,10 +72,15 @@ Choose below ?
 		l.do_search(position, location)
 		l.click_easy_jobs()
 	elif LINKEDIN_SERVICE == 3:
-		print("Searching on Linkedin.")
-		co_name = input("\n Enter the company name in lowercase\n")
+		print("Connecting People on Linkedin.")
+		co_name = input("\n Enter the company name in lowercase.\n")
 		cp = connect_people.LinkedinBot(co_name)
 		cp.connect()
+	elif LINKEDIN_SERVICE == 4:
+		print("Stalking People on Linkedin.")
+		start_profile = input("\n Enter the Profile to start from.\n")
+		ps = profile_stalker.LinkedinBot(start_profile)
+		ps.stalk_on()
 elif SERVICE == 3:
 	print("Naukri Selected")
 	print("Applying Naukri Recommended Jobs.")
