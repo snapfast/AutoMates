@@ -8,6 +8,8 @@ from LINKEDIN import profile_stalker
 from NAUKRI import recommended_jobs as n_rec
 
 # first time setup
+# creating a UI in python using pyqt6
+# https://www.youtube.com/watch?v=Vde5SH8e1OQ&list=PLzMcBGfZo4-lB8MZfHPLTEHO9zJDDLpYj
 
 print("1. Setup First Time\n2. Reset the Previous Setup (chrome has received an update)\n3. Continue with Automation")
 FIRST_SETUP = int(input())

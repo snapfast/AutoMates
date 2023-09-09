@@ -21,7 +21,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 from time import sleep
-import random
+import configparser
 
 home_directory = path.expanduser("~")
 local_bin_directory = home_directory + '/bin/'
@@ -39,6 +39,8 @@ class LinkedinBot:
 
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")
+        self.config = configparser.ConfigParser()
+        self.config.read('config.ini')
         sleep(2)
 
     def go_exit(self):
@@ -59,7 +61,7 @@ class LinkedinBot:
         html.send_keys(Keys.END)
         sleep(10)
         try:
-            total_jobs = self.driver.find_elements(by=By.CLASS_NAME, value="jobs-job-board-list__item")
+            total_jobs = self.driver.find_elements(by=By.CLASS_NAME, value=self.config['RECOMMENDED']['JobCardClassName'])
         except NoSuchElementException as xx:
             print(xx, "is not there..")
         print(len(total_jobs))
@@ -74,7 +76,7 @@ class LinkedinBot:
         while cl < num_total_jobs:
             try:
                 try:
-                    print(easyJobs[cl].find_element(by=By.CLASS_NAME, value="job-card-container__apply-method"))
+                    print(total_jobs[cl].find_element(by=By.CLASS_NAME, value="job-card-container__apply-method"))
                 except:
                     print("------------------------------------ Normal job skipping the click")
                     cl += 1

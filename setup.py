@@ -1,11 +1,12 @@
 
 # this file uses local storage folder for browser data
 # login to the account before executing the actual script
-from os import path, mkdir, remove, chmod, removedirs
+from os import path, mkdir, remove, chmod
 import sys
 from urllib import request
 from zipfile import ZipFile
 from time import sleep
+from shutil import rmtree
 
 
 from selenium import webdriver
@@ -83,9 +84,7 @@ def loginWindow():
         driver = webdriver.Chrome(service=service, options=chrome_options)
     except SessionNotCreatedException:
         print("Update your chrome to latest version, then run again. Also, try to Reset the Setup.")
-        # raise SessionNotCreatedException
         sys.exit()
-        # removedirs(local_bin_directory, )
     driver.get("https://linkedin.com/")
       
     # second tab
@@ -101,8 +100,7 @@ def loginWindow():
 
 def reset():
     try:
-        remove(local_bin_directory + "chromedriver/chromedriver.exe")
-        removedirs(local_bin_directory + "chromedriver")
+        rmtree(local_bin_directory + "chromedriver")
     except:
-        print("reset not required")
+        print("reset failed, manually delete files in " + local_bin_directory + "chromedriver")
 
