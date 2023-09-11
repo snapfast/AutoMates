@@ -35,7 +35,7 @@ class LinkedinBot:
         chrome_options.add_experimental_option("useAutomationExtension", False)
         # chrome_options.add_experimental_option('excludeSwitches', ["enable-automation"])
 
-        service = Service(local_bin_directory + '/chromedriver/chromedriver')
+        service = Service()
 
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get("https://linkedin.com/jobs")

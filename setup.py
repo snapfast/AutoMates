@@ -4,6 +4,7 @@
 from os import path, mkdir, remove, chmod
 import sys
 from urllib import request
+import json
 from zipfile import ZipFile
 from time import sleep
 from shutil import rmtree
@@ -17,28 +18,42 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 home_directory = path.expanduser("~")
-local_bin_directory = home_directory + '/bin/'
-
-stable_release_version_url = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
+local_bin_directory = home_directory + '/bin'
 
 # change this url to correct version of the chrome installed on your system
 # get the chrome version > Chrome > About Chrome < Copy Paste that number here.
 
 distribution = {
     "linux": "linux64",
-    "mac": "mac64",
-    "mac_m1": "mac64_m1",
-    "win": "win32",
+    "mac_intel": "mac-x64",
+    "mac_arm": "mac-arm64",
+    "win32": "win32",
+    "win64": "win64",
 }
 
 # setup chromedriver before any execution
 def setupCD(os_type):
 
-    LATEST_RELEASE = request.urlopen(stable_release_version_url).read().decode('utf-8')
+    # updated mechanism as written in the https://chromedriver.chromium.org/#h.8cjh6c3ay1qq
+    json_url = 'https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json'
 
-    print('Chrome version installed: ', LATEST_RELEASE)
+    # store the response of URL
+    response = request.urlopen(json_url)
+    
+    # storing the JSON response 
+    # from url in data
+    data_json = json.loads(response.read())
 
-    url = f'https://chromedriver.storage.googleapis.com/{LATEST_RELEASE}/chromedriver_{distribution[os_type]}.zip'
+    platforms = data_json['channels']['Stable']['downloads']['chromedriver']
+    LATEST_RELEASE = data_json['channels']['Stable']['version']
+
+    for x in platforms:
+        if x['platform'] == os_type:
+            url = x['url']
+
+    print('Chrome Driver version installed: ', LATEST_RELEASE)
+    print('Downloading from ', url)
+    print(os_type)
 
     # get filename from the URL
     url_tokens = url.split("/")
@@ -61,11 +76,11 @@ def setupCD(os_type):
             print('chromedriver already downloaded', err)
         zip22 = ZipFile(local_bin_directory + fileName, 'r')
         zip22.namelist()
-        zip22.extractall(local_bin_directory + '/chromedriver')
+        zip22.extract('chromedriver', local_bin_directory + '/chromedriver')
         zip22.close()
         remove(local_bin_directory + fileName)
-        if os_type != 'win': #do not change the permission if it is windows
-            chmod(local_bin_directory + '/chromedriver/chromedriver', 0o744)
+        if os_type != 'win32' or os_type != 'win64': #do not change the permission if it is windows
+            chmod(local_bin_directory + '/chromedriver', 0o744)
         print("chromedriver installed.")
 
 
@@ -77,7 +92,7 @@ def loginWindow():
     # chrome_options.add_experimental_option('excludeSwitches',
     # ["enable-automation"])
 
-    service = Service(local_bin_directory + '/chromedriver/chromedriver')
+    service = Service()
     driver = None
 
     try:
@@ -100,7 +115,7 @@ def loginWindow():
 
 def reset():
     try:
-        rmtree(local_bin_directory + "chromedriver")
+        rmtree(local_bin_directory + "/chromedriver")
     except:
-        print("reset failed, manually delete files in " + local_bin_directory + "chromedriver")
+        print("reset failed, manually delete files in " + local_bin_directory + "/chromedriver")
 

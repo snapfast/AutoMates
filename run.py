@@ -11,29 +11,13 @@ from NAUKRI import recommended_jobs as n_rec
 # creating a UI in python using pyqt6
 # https://www.youtube.com/watch?v=Vde5SH8e1OQ&list=PLzMcBGfZo4-lB8MZfHPLTEHO9zJDDLpYj
 
-print("1. Setup First Time\n2. Reset the Previous Setup (chrome has received an update)\n3. Continue with Automation")
+print("1. Let me login to the website.\n2. I am already logged in previously using this script.")
 FIRST_SETUP = int(input())
 if FIRST_SETUP == 1:
-	# ask the operating system
-	print("\nThis Computer OS ?\n 1. Linux\n 2. Windows\n 3. MacOS\n 4. MacOS M1")
-	OS = int(input())
-	if OS == 1:
-		setup.setupCD('linux')
-	elif OS == 2:
-		setup.setupCD('win')
-	elif OS == 3:
-		setup.setupCD('mac')
-	elif OS == 4:
-		setup.setupCD('mac_m1')
-
 	# letting the user to login
 	print("Chrome window will open to let you login to the accounts. \nYou have two minutes to login to your account :)")
 	sleep(10)
 	setup.loginWindow()
-elif FIRST_SETUP == 2:
-	setup.reset()
-	print("Reset Complete, Run again and Setup for use latest version of chrome.")
-	exit()
 else:
 	print("skipping setup...")
 
@@ -90,7 +74,7 @@ elif SERVICE == 3:
 	n.click_job()
 elif SERVICE == 4:
 	print("Bumble Selected")
-	print("Swiping right on all profiles :)")
+	print("Swiping right on all profiles :\)")
 	b = swipe.BumbleBot()
 	b.right_swipe()
 else:

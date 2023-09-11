@@ -2,21 +2,26 @@
 Automate the finding people/jobs on Apps like LinkedIn, Bumble, AngelList.
 
 
-## Setup 
+## Setup (Ubuntu)
 
-Run the command to install the only package needed `selenium`.  
-*Optional: Create separate python environment.*
+Run the  command to install the only package needed `selenium`.  
 
-1. `pip3 install selenium`
-2. `git clone https://github.com/snapfast/AutoMates`
-3. `cd Automates`
-4. `python run.py`
-5. Just use the menu to do things.
+- `sudo apt install python3-selenium`
+- `git clone https://github.com/snapfast/AutoMates`
+- `cd Automates`
+- `python run.py`
+- Just use the menu to do things.
 
-Note: Use `pip3 or pip`, `python3 or python` whichever works for you.   
 This program is only supported on Python 3.10 and above.
 
-## Usage screenshots
+## Usage
+
+run.py
+
+## Usage screenshots (Deprecated by New Selenium Manager)
+
+Since the release of selenium manager, chrome, firefox and safari drivers are automatically configured by selenium.   
+Read more here https://www.selenium.dev/blog/2022/introducing-selenium-manager/
 
 ![Usage](./zz/Screenshot_from_2022-09-13_22-34-19_1.png)
 
