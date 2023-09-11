@@ -16,9 +16,11 @@ This program is only supported on Python 3.10 and above.
 
 ## Usage
 
-run.py
+coming soon...
 
-## Usage screenshots (Deprecated by New Selenium Manager)
+
+
+## Usage screenshots (deprecated)
 
 Since the release of selenium manager, chrome, firefox and safari drivers are automatically configured by selenium.   
 Read more here https://www.selenium.dev/blog/2022/introducing-selenium-manager/

@@ -134,10 +134,15 @@ class LinkedinBot():
         gerat = True
         while gerat:
             try:
+                '''
                 self.driver.find_element(
                     by=By.XPATH,
-                    value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']"
+                    value="//button[@class='jobs-apply-button']"
+                    # value="//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']"
                 ).click()
+                '''
+                sleep(3)
+                self.driver.find_element(by=By.CLASS_NAME, value="jobs-apply-button").click()
                 print('Clicked the Easy Button')
                 gerat = False
             except NoSuchElementException:
