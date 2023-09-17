@@ -8,6 +8,7 @@ from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from functools import reduce
 from selenium.webdriver.chrome.service import Service
 
 from time import sleep
@@ -42,24 +43,33 @@ class LinkedinBot():
 
         html = self.driver.find_element(by=By.TAG_NAME, value='html')
         j = 0
+        total_jobs = 0
 
         while 1:
-            html.send_keys(Keys.END)
-            sleep(1)
-            # left panel jobs
-            try:
-                visible_connect_buttons = self.driver.find_elements(
-                    by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--secondary ember-view full-width']")
-            except NoSuchElementException as NoSuch:
-                print(NoSuch, "\n cool")
+            if total_jobs < 200:
+                html.send_keys(Keys.END)
+                sleep(1)
+                # left panel jobs
+                try:
+                    visible_buttons = self.driver.find_elements(
+                        by=By.XPATH, value="//button[@class='artdeco-button artdeco-button--2 artdeco-button--secondary ember-view full-width']")
+                except NoSuchElementException as NoSuch:
+                    print(NoSuch, "\n cool")
+            else:
+                j += 1
 
-            total_jobs = len(visible_connect_buttons)
+            # visible_connect_buttons = reduce(check_connect_text ,visible_buttons, [])
+            total_jobs = len(visible_buttons)
             print(total_jobs, j)
 
             try:
                 self.driver.execute_script(
-                    "window.scrollTo(0, arguments[0].offsetTop);", visible_connect_buttons[j])
-                job_name_element = visible_connect_buttons[j].click()
+                    "window.scrollTo(0, arguments[0].offsetTop);", visible_buttons[j])
+                if visible_buttons[j].text == "Connect":
+                    job_name_element = visible_buttons[j].click()
+                else:
+                    print(visible_buttons[j].text)
+                    continue
 
                 print(job_name_element)
 
@@ -73,8 +83,11 @@ class LinkedinBot():
                 sleep(2)
             except NoSuchElementException:
                 print('asking for person email for connect, clicking X, move to next')
-                self.driver.find_element(
-                    by=By.XPATH, value="//button[@class='artdeco-modal__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']").click()
+                self.driver.find_element(by=By.CSS_SELECTOR, value='button[aria-label="Dismiss"]').click()
+
+
+def check_connect_text(first, second):
+    return [first, second]
 
 
 if __name__ == '__main__':

@@ -30,36 +30,12 @@ class LinkedinBot():
         service = Service()
 
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
-        self.driver.get("https://linkedin.com/jobs")
+        self.driver.get("https://www.linkedin.com/jobs/collections/recommended/")
         sleep(2)
 
     def go_exit(self):
         self.driver.close()
         self.driver.quit()
-
-    def do_search(self, position = "software engineer", location = "germany"):
-        box = self.driver.find_elements(by=By.CLASS_NAME,
-                                        value="jobs-search-box__text-input")
-        box[0].click()
-        sleep(1)
-        box[0].send_keys(position)  # job title
-        box[3].send_keys(location + "\n")  # location
-        sleep(5)
-
-        # turn on filter for the Easy Apply Jobs, all jobs will be easy ones
-        try:
-            easy_apply_filter_parent = self.driver.find_element(
-                by=By.CLASS_NAME,
-                value='search-reusables__filter-binary-toggle')
-            easy_apply_filter_parent.find_element(by=By.TAG_NAME,
-                                                  value='button').click()
-            print(easy_apply_filter_parent.text)
-        except:
-            print("not able to find the easy button")
-
-        sleep(5)
-        self.change_page()
-        sleep(5)
 
     def change_page(self):
         # get the current page number, self.page_number
@@ -194,10 +170,7 @@ class LinkedinBot():
 
 
 if __name__ == '__main__':
-    position = argv[1]
-    location = argv[2]
 
-    lb = LinkedinBot()
-    lb.do_search(position, location)
-    lb.click_easy_jobs()
-    lb.change_page()
+    rp = LinkedinBot()
+    rp.click_easy_jobs()
+    rp.change_page()

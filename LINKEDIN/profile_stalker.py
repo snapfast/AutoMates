@@ -27,7 +27,7 @@ class LinkedinBot():
             f"--user-data-dir={local_bin_directory}/chrome-data")
         chrome_options.add_experimental_option("useAutomationExtension", False)
 
-        service = Service(local_bin_directory + '/chromedriver/chromedriver')
+        service = Service()
 
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
         self.driver.get(any_profile_link)
