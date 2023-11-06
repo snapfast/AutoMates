@@ -69,8 +69,10 @@ class NaukriBot:
                 # switch window
                 self.driver._switch_to.window(self.driver.window_handles[1])
                 try:
-                    applyContainer = self.driver.find_element(by=By.CLASS_NAME,value='apply-button-container')
-                    applyContainer.find_element(by=By.CLASS_NAME,value='apply-button').click()
+                    applyContainer = self.driver.find_element(by=By.CLASS_NAME,
+                                                              value='styles_jhc__apply-button-container__5Bqnb')
+
+                    applyContainer.find_element(by=By.ID, value='apply-button').click()
                 except NoSuchElementException as e:
                     print("no apply button found.")
                 sleep(2)
