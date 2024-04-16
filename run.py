@@ -74,7 +74,7 @@ elif SERVICE == 3:
 	n.click_job()
 elif SERVICE == 4:
 	print("Bumble Selected")
-	print("Swiping right on all profiles :\)")
+	print("Swiping right on all profiles :P")
 	b = swipe.BumbleBot()
 	b.right_swipe()
 else:

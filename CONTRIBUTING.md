@@ -26,7 +26,7 @@ If you want to submit a bug fix or new feature, make sure that all tests are pas
 Before running any tests you have to start the [fixtures server](https://github.com/octokit/fixtures-server)
 
 ```
-$ npm run start-fixtures-server
+$ python run.py
 ```
 
 In a second terminal, run the tests
@@ -46,7 +46,7 @@ variable (or set it in a `.env` file) to avoid running against GitHub's rate lim
 
 ## Making Changes
 
-Here is an overview of [how `@octokit/rest` works](HOW_IT_WORKS.md).
+Here is an overview
 
 - Create a topic branch from the main branch.
 - Check for unnecessary whitespace / changes with `git diff --check` before committing.
