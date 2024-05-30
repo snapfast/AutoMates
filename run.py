@@ -6,6 +6,7 @@ from LINKEDIN import search_jobs
 from LINKEDIN import connect_people
 from LINKEDIN import profile_stalker
 from NAUKRI import recommended_jobs as n_rec
+from LINKEDIN import connect_recruiter
 
 # first time setup
 # creating a UI in python using pyqt6
@@ -44,6 +45,7 @@ Choose below ?
 2. Search based on Position and Location.
 3. Connect to Company People (paypal, nvidia, tesla, etc.)
 4. Stalk Profiles (opens a link from profile you give, then keeps on.)
+5. Connect to recruiter who is hiring certain position.
 	""")
 	LINKEDIN_SERVICE = int(input())
 	if LINKEDIN_SERVICE == 1:
@@ -67,6 +69,11 @@ Choose below ?
 		start_profile = input("\n Enter the Profile to start from.\n")
 		ps = profile_stalker.LinkedinBot(start_profile)
 		ps.stalk_on()
+	elif LINKEDIN_SERVICE == 5:
+		job_profile = input("\n enter position eg: 'python hiring'\n")
+		print('Make sure to write about you in constants.py under variable LINKEDIN_CANDIDATE_INFO under 300 words')
+		rp = connect_recruiter.LinkedinBot(job_profile=job_profile)
+		rp.apply_job()
 elif SERVICE == 3:
 	print("Naukri Selected")
 	print("Applying Naukri Recommended Jobs.")
