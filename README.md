@@ -1,6 +1,5 @@
 # AutoMates
-Automate the finding people/jobs on Apps like LinkedIn, Bumble, AngelList.
-
+Not Updating the code, fixes are welcome. I will try to merge your code as early as possible.
 
 ## Setup (Ubuntu)
 
