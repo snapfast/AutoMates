@@ -73,8 +73,6 @@ class LinkedinBot():
             # storing the main tab context
             original_window = self.driver.current_window_handle
             j = 0
-            print(original_window)
-            input()
             # looping on each left panel job one by one.
             while j < total_jobs:
                 sleep(2)
@@ -82,7 +80,6 @@ class LinkedinBot():
                     job_name_element = left_panel_jobs[j].find_element(
                         by=By.CLASS_NAME, value='job-card-list__title')
                     print(job_name_element)
-                    exit()
                     # company_name_element = left_panel_jobs[j].find_element(
                     #     by=By.CLASS_NAME, value='job-card-container__company-name')
                     # location_element = left_panel_jobs[j].find_element(
