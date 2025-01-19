@@ -22,6 +22,7 @@ class LinkedinBot():
     def __init__(self):
         # term = self.term
         self.page_number = 5
+
         chrome_options = Options()
         chrome_options.add_argument(
             f"--user-data-dir={local_bin_directory}/chrome-data")
@@ -30,7 +31,7 @@ class LinkedinBot():
         service = Service()
 
         self.driver = webdriver.Chrome(service=service, options=chrome_options)
-        self.driver.get("https://www.linkedin.com/jobs/collections/recommended/")
+        self.driver.get("https://www.linkedin.com/jobs/recommended/")
         sleep(2)
 
     def go_exit(self):
@@ -62,6 +63,7 @@ class LinkedinBot():
             try:
                 left_panel_jobs = self.driver.find_elements(
                     by=By.CLASS_NAME, value="jobs-search-results__list-item")
+                print(left_panel_jobs)
             except NoSuchElementException as NoSuch:
                 print(NoSuch, "\n cool")
 
@@ -71,13 +73,16 @@ class LinkedinBot():
             # storing the main tab context
             original_window = self.driver.current_window_handle
             j = 0
-
+            print(original_window)
+            input()
             # looping on each left panel job one by one.
             while j < total_jobs:
                 sleep(2)
                 try:
                     job_name_element = left_panel_jobs[j].find_element(
                         by=By.CLASS_NAME, value='job-card-list__title')
+                    print(job_name_element)
+                    exit()
                     # company_name_element = left_panel_jobs[j].find_element(
                     #     by=By.CLASS_NAME, value='job-card-container__company-name')
                     # location_element = left_panel_jobs[j].find_element(
